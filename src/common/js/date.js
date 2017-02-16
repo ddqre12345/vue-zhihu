@@ -39,4 +39,4 @@ exports.objectDate = (date) => {
 
 function padLeftZero(str) {
   return ('00' + str).substr(str.length);
-} ;
+}
