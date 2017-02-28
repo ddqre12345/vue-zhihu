@@ -1,5 +1,4 @@
 @import "../../common/css/mixin.styl"
-
 .menu
   .menu-list
     position fixed
@@ -17,6 +16,7 @@
       height 230px
       padding-top 68px
       text-align center
+      color: #fff
       .menu-avatar
         box-sizing border-box
         width 100px
@@ -29,10 +29,14 @@
         padding-top 16px
         padding-bottom 10px
         font-size 32px
-        color: #ffffff
+      .author-site
+        width 150px
+        background url(../../assets/Pin.png) no-repeat left center
+        padding-left 16.5px
+        background-size 9px 100%
+        margin 0 auto
       .menu-title
         font-size 14px
-        color #fff
         line-height 28px
         font-weight 500
     &.show
@@ -77,11 +81,12 @@
               color #fff
         .menu-text
           display inline-block
-          font-size 15px
+          font-size 22px
           line-height 32px
           vertical-align top
           margin-left 10px
           font-weight 700
+          color: fff
         .menu-new
           display inline-block
           width 30px

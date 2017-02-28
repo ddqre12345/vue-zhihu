@@ -49,6 +49,23 @@ const routers = [{
         });
       }
     }, {
+      path: '/latestNews',
+      name: 'latestNews',
+      component(resolve) {
+        require.ensure(['./components/lists/latestNews.vue'], () => {
+          resolve(require('./components/lists/latestNews.vue'));
+        });
+      },
+      meta: {requiresAuth: true}
+    }, {
+      path: '/hotNews',
+      name: 'hotNews',
+      component(resolve) {
+        require.ensure(['./components/lists/hotNews.vue'], () => {
+          resolve(require('./components/lists/hotNews.vue'));
+        });
+      }
+    }, {
       path: '/web',
       name: 'web',
       component(resolve) {
