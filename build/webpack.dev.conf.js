@@ -32,5 +32,13 @@ module.exports = merge(baseWebpackConfig, {
       inject: true
     }),
     new FriendlyErrors()
-  ]
+  ],
+  //使用webpack-dev-server，提高开发效率
+  devServer: {
+    contentBase: './',
+    host: 'localhost',
+    port: 9090, //默认8080
+    inline: true, //可以监控js变化
+    hot: true, //热启动
+  }
 });

@@ -2,9 +2,10 @@
   <div class="menu">
     <div class="menu-list" :class="{'show': show}">
       <div class="menu-header">
-        <img class="menu-avatar" src="https://avatars0.githubusercontent.com/u/11735533?v=3&amp;u=02b515725d0e52cdf5f02e2dbdc98c1de3ddbcc2&amp;s=400"
+        <img class="menu-avatar" src="https://avatars2.githubusercontent.com/u/16521402?v=3&u=225ef33c491d879294c4cb06621ec15f5b01f02a&s=400"
           alt="">
-        <div class="menu-title">YangYi && liangxiaojuan</div>
+        <div class="author">浅滩戏虾</div>
+        <div class="menu-title">纯粹知乎</div>
       </div>
       <div class="menu-ul">
         <div v-for='menu in menus' @click="updateHeader(MENU_CONVERT[menu], menu)">
@@ -28,7 +29,7 @@
 
 <script>
   import { mapState } from 'vuex';
-  const MENU_CONVERT = { 'welfare': '福利', 'day': '每日', 'ios': 'IOS', android: 'Android', web: '前端' };
+  const MENU_CONVERT = { 'welfare': '福利', 'day': '每日福利', 'ios': 'IOS', android: 'Android', web: '前端' };
   export default
     {
       name: 'v-menu',

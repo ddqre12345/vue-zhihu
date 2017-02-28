@@ -50,7 +50,7 @@
     padding-top: 50px;
   }
   #app .show {
-    transform: translateX(250px);
+    transform: translateX(285px);
   }
   #app .page-cover {
     position: fixed;
@@ -69,4 +69,5 @@
     height: 100%;
     background: red;
   }
+
 </style>

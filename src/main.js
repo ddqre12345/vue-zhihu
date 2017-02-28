@@ -3,6 +3,8 @@ import store from './vuex/store';
 import VueRouter from 'vue-router';
 import routes from './routers'; // 引入路由配置
 import vueResource from 'vue-resource';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 import infiniteScroll from 'vue-infinite-scroll';  // 引入滑动模块
 import VueLazyload from 'vue-lazyload';  // 引入图片懒加载模块
 import {loadFromlLocal} from './common/js/store';  // 公共方法：本地缓存
@@ -12,6 +14,7 @@ import 'common/css/index.styl'; // 引入公共样式
 Vue.use(infiniteScroll);
 Vue.use(VueRouter);
 Vue.use(vueResource);
+Vue.use(VueAxios, axios);
 
 // error，loading是图片路径, 用require引入
 Vue.use(VueLazyload, {
