@@ -1,13 +1,12 @@
 <template>
   <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">
     <a v-for="data in datas" :href="data.url " target="view_window">
-      <v-card :data="data" ></v-card>
+      <v-new-card :data="data" ></v-new-card>
     </a>
   </div>
-
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import vNewCard from '../newCard/newCard.vue';
   export default
   {
@@ -30,13 +29,18 @@
     methods: {
       loadTop() {
         this.$store.commit('UPDATE_LOADING', true);
-        this.$http.get(`http://news-at.zhihu.com/api/4/news/latest`).then((response) => {
-          console.log(response);
-          this.datas = this.datas.concat(response);
-          this.$nextTick(() => {
-            this.$store.commit('UPDATE_LOADING', false);
+        this.axios.get(`https://zhuanlan.zhihu.com/api/recommendations/columns?limit=16&offset=0&seed=60`)
+          .then((response) => {
+            console.log(response);
+
+            this.datas = this.datas.concat(response.data);
+            this.$nextTick(() => {
+              this.$store.commit('UPDATE_LOADING', false);
+            });
+          })
+          .catch((response) => {
+            console.log(response);
           });
-        });
       },
       loadMore() {
         this.busy = true;

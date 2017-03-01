@@ -38,7 +38,6 @@
     methods: {
       loadTop() {
         this.$store.commit('UPDATE_LOADING', true);
-        console.log(this);
         this.axios.get(`https://gank.io/api/data/福利/10/${this.page}`)
           .then((response) => {
             let left = response.data.results.filter((data, i) => {

@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img  v-lazy="'https://pic4.zhimg.com/data.avatar.id' + '.jpg'" class="img">
+    <img  v-lazy="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic4.zhimg.com/' + data.avatar.id + '_l.jpg'" class="img">
     <div class="card-content">
       <div class="desc">{{data.description}}</div>
       <div class="card-content-bottom">
@@ -22,4 +22,5 @@
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
   @import "newCard.styl";
+
 </style>
