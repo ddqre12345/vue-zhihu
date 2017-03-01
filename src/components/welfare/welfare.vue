@@ -1,13 +1,13 @@
 <template>
-  <div class="welfare-wrapper" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
-    <div class="welfare-center">
-      <figure v-for="data in leftData" @click="selectDetails(data.createdAt)">
-        <v-img :imgUrl="data.url"></v-img>
+  <div class="recommend-wrapper" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+    <div class="recommend-center">
+      <figure v-for="data in leftData" @click="selectDetails(data.url)">
+        <v-img :imgUrl="data.avatar.id" :data="data"></v-img>
       </figure>
     </div>
-    <div class="welfare-center">
-      <figure v-for="data in rightData" @click="selectDetails(data.createdAt)">
-        <v-img :imgUrl="data.url"></v-img>
+    <div class="recommend-center">
+      <figure v-for="data in rightData" @click="selectDetails(data.url)">
+        <v-img :imgUrl="data.avatar.id" :data="data"></v-img>
       </figure>
     </div>
     <v-details ref="details" :time="time" :detailsData="detailsData"></v-details>
@@ -24,7 +24,7 @@
         leftData: [],
         rightData: [],
         busy: false,
-        page: 1,
+        page: 0,
         detailsData: {},
         time: ''
       };
@@ -38,12 +38,13 @@
     methods: {
       loadTop() {
         this.$store.commit('UPDATE_LOADING', true);
-        this.axios.get(`https://gank.io/api/data/福利/10/${this.page}`)
+        this.axios.get(`https://zhuanlan.zhihu.com/api/recommendations/columns?limit=6&offset=${this.page}`)
           .then((response) => {
-            let left = response.data.results.filter((data, i) => {
+            console.log(response);
+            let left = response.data.filter((data, i) => {
               return (i + 1) % 2 === 1;
             });
-            let right = response.data.results.filter((data, i) => {
+            let right = response.data.filter((data, i) => {
               return (i + 1) % 2 !== 1;
             });
             this.leftData = this.leftData.concat(left);
@@ -61,7 +62,7 @@
       loadMore() {
         this.busy = true;
         this.loadTop();
-        this.page++;
+        this.page = this.page + 6;
       },
       selectDetails(time) {
         this.time = time;
@@ -86,5 +87,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "welfare.styl";
+  @import "recommend.styl";
 </style>

@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   import vNewCard from '../newCard/newCard.vue';
   export default
   {

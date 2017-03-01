@@ -24,7 +24,7 @@
 
 <script>
   import { mapState } from 'vuex';
-  const MENU_CONVERT = { 'welfare': '福利', 'day': '每日福利', 'ios': 'IOS', 'latestNews': '专栏 · 发现', 'hotNews': '文章 · 发现' };
+  const MENU_CONVERT = { 'welfare': '专栏 · 发现', 'day': '每日福利', 'ios': 'IOS', 'latestNews': '专栏 · 发现', 'hotNews': '文章 · 发现' };
   export default
     {
       name: 'v-menu',
