@@ -15,7 +15,7 @@ import {savaToLocal} from '../../common/js/store';
         mounted() {
             setTimeout(() => {
                 this.$router.push({
-                    name: 'welfare'
+                    name: 'column'
                 });
                 savaToLocal('gank', 'wecome', true);
             }, 2000);

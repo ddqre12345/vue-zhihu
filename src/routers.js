@@ -15,11 +15,11 @@ const routers = [{
   },
   children: [
     {
-      path: '/welfare',
-      name: 'welfare',
+      path: '/column',
+      name: 'column',
       component(resolve) {
-        require.ensure(['./components/welfare/welfare.vue'], () => {
-          resolve(require('./components/welfare/welfare.vue'));
+        require.ensure(['./components/column/column.vue'], () => {
+          resolve(require('./components/column/column.vue'));
         });
       }
     }, {

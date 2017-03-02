@@ -3,7 +3,6 @@
     <h1>{{data.title}}</h1>
     <div v-html="data.content"></div>
   </div>
-
 </template>
 
 <script type="text/ecmascript-6">

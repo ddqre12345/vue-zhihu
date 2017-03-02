@@ -17,7 +17,7 @@
 
 <script>
   export default {
-    name: 'v-img',
+    name: 'v-column',
     props: {
       imgUrl: {
         type: String

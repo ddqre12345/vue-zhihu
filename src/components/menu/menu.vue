@@ -14,17 +14,14 @@
             <span class="menu-text">{{MENU_CONVERT[menu]}}</span>
           </router-link>
         </div>
-
       </div>
-    </div>
-    <div class="menu-other">
     </div>
   </div>
 </template>
 
 <script>
   import { mapState } from 'vuex';
-  const MENU_CONVERT = { 'welfare': '专栏 · 发现', 'day': '每日福利', 'ios': 'IOS', 'latestNews': '专栏 · 发现', 'hotNews': '文章 · 发现' };
+  const MENU_CONVERT = { 'column': '专栏 · 发现', 'day': '每日福利', 'ios': 'IOS', 'latestNews': '专栏 · 发现', 'hotNews': '文章 · 发现' };
   export default
     {
       name: 'v-menu',
@@ -56,5 +53,4 @@
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
   @import 'menu.styl';
-
 </style>

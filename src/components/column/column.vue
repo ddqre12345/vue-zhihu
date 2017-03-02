@@ -1,23 +1,23 @@
 <template>
   <div class="recommend-wrapper" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
     <div class="recommend-center">
-      <figure v-for="data in leftData" @click="selectDetails(data.url)">
-        <v-img :imgUrl="data.avatar.id" :data="data"></v-img>
+      <figure v-for="data in leftData" @click="selectDetails(data.slug, data.name)">
+        <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
       </figure>
     </div>
     <div class="recommend-center">
-      <figure v-for="data in rightData" @click="selectDetails(data.url)">
-        <v-img :imgUrl="data.avatar.id" :data="data"></v-img>
+      <figure v-for="data in rightData" @click="selectDetails(data.slug, data.name)">
+        <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
       </figure>
     </div>
-    <v-details ref="details" :time="time" :detailsData="detailsData"></v-details>
+    <v-column-details ref="details" :time="time" :personalData="personalData" :title="title"></v-column-details>
   </div>
 </template>
 
 <script>
-  import { objectDate } from '../../common/js/date';
-  import vImg from '../lazyloadimg/lazyimg.vue';
-  import vDetails from '../details/details.vue';
+//  import { objectDate } from '../../common/js/date';
+  import vColumn from '../lazyloadimg/lazyimg.vue';
+  import vColumnDetails from '../columnDetails/columnDetails.vue';
   export default {
     data() {
       return {
@@ -25,22 +25,22 @@
         rightData: [],
         busy: false,
         page: 0,
-        detailsData: {},
+        personalData: {},
+        title: '',
         time: ''
       };
     },
     components: {
-      vImg,
-      vDetails
+      vColumn,
+      vColumnDetails
     },
     created() {
     },
     methods: {
       loadTop() {
         this.$store.commit('UPDATE_LOADING', true);
-        this.axios.get(`https://zhuanlan.zhihu.com/api/recommendations/columns?limit=6&offset=${this.page}`)
+        this.axios.get(`/api/recommendations/columns?limit=6&offset=${this.page}`)
           .then((response) => {
-            console.log(response);
             let left = response.data.filter((data, i) => {
               return (i + 1) % 2 === 1;
             });
@@ -64,15 +64,16 @@
         this.loadTop();
         this.page = this.page + 6;
       },
-      selectDetails(time) {
-        this.time = time;
-          this.$store.commit('UPDATE_LOADING', true);
-        let object = objectDate(this.time);
-        this.axios.get(`http://gank.io/api/history/content/day/${object.Y}/${object.M}/${object.D}`)
+      selectDetails(column, name) {
+        this.column = column;
+        this.title = name;
+        this.$store.commit('UPDATE_LOADING', true);
+        this.axios.get(`/api/columns/${this.column}/posts?limit=10&offset=0`)
           .then((response) => {
-            console.log(response);
-            let data = response.data.results;
-            this.detailsData = data[0];
+            console.log(this);
+            let data = response.data;
+            this.personalData = data[0];
+            console.log(this.personalData);
             this.$refs.details.show();
             this.$nextTick(() => {
               this.$store.commit('UPDATE_LOADING', false);
@@ -87,5 +88,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "recommend.styl";
+  @import "column.styl";
 </style>
