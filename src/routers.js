@@ -5,6 +5,7 @@
  * name ： 路由的名字
  * component : 路由的组件路径
  */
+
 const routers = [{
   path: '/',
   name: 'index',
@@ -15,13 +16,24 @@ const routers = [{
   },
   children: [
     {
-      path: '/column',
+      path: '/column/',
       name: 'column',
       component(resolve) {
         require.ensure(['./components/column/column.vue'], () => {
           resolve(require('./components/column/column.vue'));
         });
-      }
+      },
+      children: [
+        {
+          path: 'user/:id',
+          name: 'user',
+          component(resolve) {
+            require.ensure(['./components/columnDetails/columnDetails.vue'], () => {
+            resolve(require('./components/columnDetails/columnDetails.vue'));
+            });
+          }
+        }
+      ]
     }, {
       path: '/day',
       name: 'day',

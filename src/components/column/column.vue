@@ -2,15 +2,19 @@
   <div class="recommend-wrapper" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
     <div class="recommend-center">
       <figure v-for="data in leftData" @click="selectDetails(data.slug, data.name)">
-        <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
+        <router-link :to="{ name: 'user', params: { id: data.slug }}">
+          <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
+        </router-link>
       </figure>
     </div>
     <div class="recommend-center">
       <figure v-for="data in rightData" @click="selectDetails(data.slug, data.name)">
-        <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
+        <router-link :to="{ name: 'user', params: { id: data.slug }}">
+          <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
+        </router-link>
       </figure>
     </div>
-    <v-column-details ref="details" :time="time" :personalData="personalData" :title="title"></v-column-details>
+    <router-view class="view"></router-view>
   </div>
 </template>
 

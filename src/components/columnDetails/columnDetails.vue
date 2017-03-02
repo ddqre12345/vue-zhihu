@@ -38,7 +38,6 @@
                     </li>
                   </ul>
                 </div>
-                <v-day :data="personalData" ref="day"></v-day>
             </div>
         </div>
     </transition>
@@ -47,7 +46,6 @@
 <script type="text/ecmascript-6">
     import { formatDate } from '../../common/js/date';
     import BScroll from 'better-scroll';
-    import vDay from '../day/day.vue';
     export default {
         name: 'v-column-details',
         props: {
@@ -93,7 +91,6 @@
             }
         },
         components: {
-            vDay
         }
     };
 </script>
