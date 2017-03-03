@@ -16,24 +16,21 @@ const routers = [{
   },
   children: [
     {
-      path: '/column/',
-      name: 'column',
+      path: '/columns/',
+      name: 'columns',
       component(resolve) {
         require.ensure(['./components/column/column.vue'], () => {
           resolve(require('./components/column/column.vue'));
         });
-      },
-      children: [
-        {
-          path: 'user/:id',
-          name: 'user',
-          component(resolve) {
-            require.ensure(['./components/columnDetails/columnDetails.vue'], () => {
-            resolve(require('./components/columnDetails/columnDetails.vue'));
-            });
-          }
-        }
-      ]
+      }
+    }, {
+      path: 'column/:id',
+      name: 'column',
+      component(resolve) {
+        require.ensure(['./components/columnDetails/columnDetails.vue'], () => {
+          resolve(require('./components/columnDetails/columnDetails.vue'));
+        });
+      }
     }, {
       path: '/day',
       name: 'day',

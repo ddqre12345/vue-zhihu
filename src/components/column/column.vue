@@ -1,15 +1,15 @@
 <template>
   <div class="recommend-wrapper" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
     <div class="recommend-center">
-      <figure v-for="data in leftData" @click="selectDetails(data.slug, data.name)">
-        <router-link :to="{ name: 'user', params: { id: data.slug }}">
+      <figure v-for="data in leftData" @click="updateHeader(data.name)">
+        <router-link :to="{ name: 'column', params: { id: data.slug }}">
           <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
         </router-link>
       </figure>
     </div>
     <div class="recommend-center">
-      <figure v-for="data in rightData" @click="selectDetails(data.slug, data.name)">
-        <router-link :to="{ name: 'user', params: { id: data.slug }}">
+      <figure v-for="data in rightData" @click="updateHeader(data.name)">
+        <router-link :to="{ name: 'column', params: { id: data.slug }}">
           <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
         </router-link>
       </figure>
@@ -21,7 +21,6 @@
 <script>
 //  import { objectDate } from '../../common/js/date';
   import vColumn from '../lazyloadimg/lazyimg.vue';
-  import vColumnDetails from '../columnDetails/columnDetails.vue';
   export default {
     data() {
       return {
@@ -29,14 +28,12 @@
         rightData: [],
         busy: false,
         page: 0,
-        personalData: {},
         title: '',
         time: ''
       };
     },
     components: {
-      vColumn,
-      vColumnDetails
+      vColumn
     },
     created() {
     },
@@ -68,24 +65,9 @@
         this.loadTop();
         this.page = this.page + 6;
       },
-      selectDetails(column, name) {
-        this.column = column;
-        this.title = name;
-        this.$store.commit('UPDATE_LOADING', true);
-        this.axios.get(`/api/columns/${this.column}/posts?limit=10&offset=0`)
-          .then((response) => {
-            console.log(this);
-            let data = response.data;
-            this.personalData = data[0];
-            console.log(this.personalData);
-            this.$refs.details.show();
-            this.$nextTick(() => {
-              this.$store.commit('UPDATE_LOADING', false);
-            });
-          })
-          .catch((response) => {
-            console.log(response);
-          });
+      updateHeader(title) {
+        console.log(title);
+        this.$store.commit('UPDATE_COLUMNTITLE', title);
       }
     }
   };

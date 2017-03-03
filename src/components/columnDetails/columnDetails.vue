@@ -3,65 +3,32 @@
         <div v-show="showFlag" class="details">
             <div>
                 <header class="header">
-                    <header class="bar bar-nav" @click="hide">
+                    <header class="bar bar-nav">
+                      <router-link :to="{ name: 'columns'}">
                         <div class="pull-left">
                             <span class="iconfont icon-left"></span>
                         </div>
-                        <div class="title">{{title}}</div>
+                      </router-link>
+                        <div class="title">{{columnTitle}}</div>
                     </header>
                 </header>
                 <div class="ColumnAbout"><img src="http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic2.zhimg.com/a09dabc3d_xl.jpg" class="ColumnAbout-avatar" alt="">
                   <h1 class="ColumnAbout-name">琉森：抽油烟少女</h1>
                   <p class="ColumnAbout-intro">沉迷于新闻摄影的师范生，却做了格子间里的产品经理…</p>
-                  <div>
-                    <div class="ColumnAbout-actions">
-                      <div class="Menu ColumnAbout-menu ">
-                        <button
-                          class="Button Button Button--plain MenuButton MenuButton-listen-hover ColumnAbout-menuButton icon icon-ic_unfold"
-                          aria-label="更多操作" type="button"></button>
-                        <div class="Menu-dropdown"></div>
-                      </div>
-                    </div>
-                    <a class="ColumnAbout-followers" href="/luzern/followers" target="_blank"><!-- react-text: 1218 -->
-                      7648<!-- /react-text --><!-- react-text: 1219 --> 人关注<!-- /react-text --></a></div>
-                  <ul class="ColumnTopicList">
-                    <li><a href="/luzern"><span class="TopicTag is-active"><!-- react-text: 1224 -->全部<!-- /react-text --><span
-                      class="TopicTag-count">27</span></span></a></li>
-                    <li><a href="/luzern?topic=%E7%BE%8E%E9%A3%9F"><span class="TopicTag"><!-- react-text: 1229 -->美食
-                      <!-- /react-text --><span class="TopicTag-count">4</span></span></a></li>
-                    <li><a href="/luzern?topic=%E7%83%B9%E9%A5%AA"><span class="TopicTag"><!-- react-text: 1234 -->烹饪
-                      <!-- /react-text --><span class="TopicTag-count">2</span></span></a></li>
-                    <li><a href="/luzern?topic=%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8"><span class="TopicTag"><!-- react-text: 1239 -->日本旅游
-                      <!-- /react-text --><span class="TopicTag-count">2</span></span></a></li>
-                    <li>
-                      <button class="ColumnTopicList-showall" type="button">更多</button>
-                    </li>
-                  </ul>
-                </div>
+              </div>
             </div>
         </div>
     </transition>
 </template>
 
 <script type="text/ecmascript-6">
-    import { formatDate } from '../../common/js/date';
     import BScroll from 'better-scroll';
+    import {mapState} from 'vuex';
     export default {
-        name: 'v-column-details',
-        props: {
-            personalData: {
-                type: Object
-            },
-            data: {
-              type: Object
-            },
-            title: {
-              type: String
-            }
-        },
+//        name: 'v-column-details',
         data() {
             return {
-                showFlag: false
+                showFlag: true
             };
         },
         created() {
@@ -77,24 +44,37 @@
                     } else {
                         this.scroll.refresh();
                     }
-                    this.$refs.day.clearStyle();
                 });
             },
             hide() {
                 this.showFlag = false;
+            },
+            getColumnDetail() {
+              this.axios.get(`/api/columns/${this.column}/posts?limit=10&offset=0`)
+                .then((response) => {
+                  console.log(this);
+                  let data = response.data;
+                  this.personalData = data[0];
+                  console.log(this.personalData);
+                  this.$refs.details.show();
+                  this.$nextTick(() => {
+                    this.$store.commit('UPDATE_LOADING', false);
+                  });
+                })
+                .catch((response) => {
+                  console.log(response);
+                });
             }
         },
-        filters: {
-            formatDate(time) {
-                let date = new Date(time);
-                return formatDate(date, 'yyyy-MM-dd');
-            }
+        computed: {
+          ...mapState([
+            'columnTitle'
+          ])
         },
         components: {
         }
     };
 </script>
-
 
 <style lang="stylus" rel="stylesheet/stylus">
     @import './columnDetails.styl';
