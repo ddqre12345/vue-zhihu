@@ -23,7 +23,19 @@ Vue.use(VueLazyload, {
     attempt: 1
   }
 );
+
+const scrollBehavior = (to, from, savedPosition) => {
+  if (savedPosition) {
+    return savedPosition;
+  } else {
+    return { x: 0, y: 0 };
+  }
+};
+
 const router = new VueRouter({
+  mode: 'history',
+  base: __dirname,
+  scrollBehavior,
   'linkActiveClass': 'active',
   routes // （缩写）相当于 routes: routes
 });

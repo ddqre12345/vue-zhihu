@@ -1,14 +1,14 @@
 <template>
   <div class="recommend-wrapper" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
     <div class="recommend-center">
-      <figure v-for="data in leftData" @click="updateHeader(data.name)">
+      <figure v-for="data in leftData">
         <router-link :to="{ name: 'column', params: { id: data.slug }}">
           <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
         </router-link>
       </figure>
     </div>
     <div class="recommend-center">
-      <figure v-for="data in rightData" @click="updateHeader(data.name)">
+      <figure v-for="data in rightData">
         <router-link :to="{ name: 'column', params: { id: data.slug }}">
           <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
         </router-link>
@@ -27,9 +27,7 @@
         leftData: [],
         rightData: [],
         busy: false,
-        page: 0,
-        title: '',
-        time: ''
+        page: 0
       };
     },
     components: {
@@ -64,10 +62,6 @@
         this.busy = true;
         this.loadTop();
         this.page = this.page + 6;
-      },
-      updateHeader(title) {
-        console.log(title);
-        this.$store.commit('UPDATE_COLUMNTITLE', title);
       }
     }
   };

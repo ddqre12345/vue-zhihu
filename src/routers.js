@@ -32,6 +32,14 @@ const routers = [{
         });
       }
     }, {
+      path: 'article/:id/:pid',
+      name: 'article',
+      component(resolve) {
+        require.ensure(['./components/articleContent/articleContent.vue'], () => {
+          resolve(require('./components/articleContent/articleContent.vue'));
+        });
+      }
+    }, {
       path: '/day',
       name: 'day',
       component(resolve) {

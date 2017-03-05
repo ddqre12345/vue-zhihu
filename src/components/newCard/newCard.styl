@@ -1,41 +1,94 @@
 .card
   position relative
-  width 100%
-  max-height 200px
+  display flex
   overflow: hidden
   margin-bottom  10px
-  border-radius 4px
-  box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
-  .img
-    width: 100%
-    padding-bottom 100%
-  .card-content
-    position absolute
-    width 90%
-    height auto
-    left 0
-    right 0
-    bottom 0
-    background-color rgba(0,0,0,0.5)
-    color #ffffff
-    padding 10px 5%
-    box-sizing: boder-box;
-    .desc
-      position relative
-      width 100%
-      text-align left
-      height auto
-      font-size 16px
-      line-height 16px
-      word-wrap break-word
-    .card-content-bottom
-      width 100%
-      display flex
-      font-size 14px
-      line-height 28px
-      .who
-        flex 1
-        text-align left
-      .time
-        flex 1
-        text-align right
+  padding 15px
+  background: #fff
+  box-shadow: 0 1px 0 0 #ced7dc
+  a.PostListItem-titleImageWrapper
+    padding-right: 16px
+    flex: 1
+    width 100px
+    height 100px
+    img.PostListItem-titleImage
+      width: 100%
+      height 100%
+  .PostListItem-info
+    flex: 2
+    p.time
+      color: #7C858A
+      font-size: 14px
+      line-height 22px
+    p.title
+      display: inline-block
+      line-height: 24px
+      font-size: 18px
+      color: #222527
+      min-height: 60px
+    .PostListItem-footer
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      font-size: 14px;
+      color: gray;
+
+
+
+.RichText
+  white-space: normal
+
+
+.RichText a,.RichText a:not(.video-box):not(.link-box):not(.member_mention)
+  color: #259;
+  text-decoration: none;
+  border-bottom: 0!important
+
+
+.RichText a:hover,.RichText a:not(.video-box):not(.link-box):not(.member_mention):hover
+  text-decoration: underline;
+  color: #259
+
+
+.RichText p
+  margin: 20px 0
+
+
+.RichText ol+br,.RichText p+br,.RichText ul+br
+  display: none
+
+
+.RichText h1,.RichText h2,.RichText h3,.RichText h4
+  margin: 20px 0;
+  font-size: 24px;
+  font-weight: 400
+
+
+.RichText blockquote,.RichText ol,.RichText ul
+  margin: 20px 0
+
+
+.RichText img
+  max-width: 100%;
+  display: block;
+  margin: 20px auto 30px
+
+
+.RichText blockquote
+  padding-left: 1.2em;
+  border-left: 4px solid #e2e3e4;
+  color: #333
+
+
+.RichText li
+  margin-top: 10px
+
+
+.RichText ol,.RichText ul
+  padding-left: 24px
+
+
+.RichText embed
+  width: 100%
+

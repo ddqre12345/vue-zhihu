@@ -1,24 +1,23 @@
 <template>
-    <transition name="fade">
-        <div class="details">
-            <header class="header">
-                <header class="bar bar-nav">
-                  <router-link :to="{ name: 'columns'}">
-                    <div class="pull-left">
-                        <span class="iconfont icon-left"></span>
-                    </div>
-                  </router-link>
-                    <div class="title">{{personalData.name}}</div>
-                </header>
-            </header>
-            <div class="columnAbout">
-              <img :src="imgId" class="columnAbout-avatar" alt=""/>
-              <h1 class="columnAbout-name">{{personalData.name}}</h1>
-              <p class="columnAbout-intro">{{personalData.intro}}</p>
+  <transition name="fade">
+    <div class="details">
+      <header class="header">
+        <header class="bar bar-nav">
+          <router-link :to="{ name: 'column', params: {id: $route.params.id}}">
+            <div class="pull-left">
+              <span class="iconfont icon-left"></span>
             </div>
-            <v-article-list></v-article-list>
-        </div>
-    </transition>
+          </router-link>
+          <div class="title">{{personalData.name}}1111</div>
+        </header>
+      </header>
+      <div class="columnAbout">
+        <img :src="imgId" class="columnAbout-avatar" alt=""/>
+        <h1 class="columnAbout-name">{{personalData.name}}</h1>
+        <p class="columnAbout-intro">{{personalData.intro}}</p>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -67,5 +66,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-    @import './columnDetails.styl';
+  @import './articleContent.styl';
 </style>

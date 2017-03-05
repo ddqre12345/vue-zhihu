@@ -7,7 +7,7 @@
 
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   import vCard from '../card/card.vue';
   export default
   {
