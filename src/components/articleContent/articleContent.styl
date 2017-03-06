@@ -1,4 +1,4 @@
-.details
+.article-content
   &.fade-enter-active, &.fade-leave-active {
     transition: all 0.2s linear
     transform translate3d(0, 0, 0)
@@ -7,23 +7,60 @@
     opacity: 0
     transform translate3d(100%, 0, 0)
   }
-  .columnAbout
-    margin: 0 auto;
-    padding: 10px
-    z-index: 1
-    text-align center
-    -ms-flex-align: center
-    align-items: center
-    .columnAbout-avatar
-      width: 100px
-      height: 100px
-      margin-bottom: 22px
-      border-radius: 50%
-    .columnAbout-name
-      font-size: 20px
-      line-height: 28px
-      margin-bottom: 12px
-    .columnAbout-intro
-      margin-bottom: 18px
-      line-height 1.2
 
+
+.RichText
+  white-space: normal
+
+
+.RichText a,.RichText a:not(.video-box):not(.link-box):not(.member_mention)
+  color: #259;
+  text-decoration: none;
+  border-bottom: 0!important
+
+
+.RichText a:hover,.RichText a:not(.video-box):not(.link-box):not(.member_mention):hover
+  text-decoration: underline;
+  color: #259
+
+
+.RichText p
+  margin: 20px 0
+
+
+.RichText ol+br,.RichText p+br,.RichText ul+br
+  display: none
+
+
+.RichText h1,.RichText h2,.RichText h3,.RichText h4
+  margin: 20px 0;
+  font-size: 24px;
+  font-weight: 400
+
+
+.RichText blockquote,.RichText ol,.RichText ul
+  margin: 20px 0
+
+
+.RichText img
+  max-width: 100%;
+  display: block;
+  margin: 20px auto 30px
+
+
+.RichText blockquote
+  padding-left: 1.2em;
+  border-left: 4px solid #e2e3e4;
+  color: #333
+
+
+.RichText li
+  margin-top: 10px
+
+
+.RichText ol,.RichText ul
+  padding-left: 24px
+
+
+.RichText embed
+  width: 100%
