@@ -19,44 +19,23 @@
           <h1 class="PostIndex-title">{{articleData.title}}</h1>
           <div class="PostIndex-author">
             <a href="https://www.zhihu.com/people/id47" target="_blank">
-              <img class="Avatar PostIndex-authorAvatar Avatar--xs" alt="袁浩瀚" src="https://pic3.zhimg.com/2d9b32906_xs.jpg">
+              <img class="Avatar PostIndex-authorAvatar Avatar--xs" alt="authorName" :src="avatarImage">
             </a>
-            <a href="https://www.zhihu.com/people/id47" target="_blank" class="PostIndex-authorName">袁浩瀚</a>
+            <a href="https://www.zhihu.com/people/id47" target="_blank" class="PostIndex-authorName">{{authorName}}</a>
             <span class="Bull"></span>
-            <div class="HoverTitle" data-hover-title="2015 年 6月 29 日星期一早上 8 点 10 分">
-              <time datetime="2015-06-29T00:10:42.000Z">2 年前</time>
+            <div class="HoverTitle">
+              <time datetime="2015-06-29T00:10:42.000Z">{{articleData.publishedTime | formatDate}}</time>
             </div>
           </div>
         </div>
-        <div class="RichText PostIndex-content">{{articleData.content}}</div>
-        <div class="Contributes">
-          <div class="BlockTitle">
-            <span class="BlockTitle-title">文章被以下专栏收录</span>
-            <span class="BlockTitle-line"></span>
-          </div>
-          <ul class="Contributes-list">
-            <li style="opacity: 1; max-height: 300px;">
-              <div class="ContributesItem">
-                <a href="https://zhuanlan.zhihu.com/alfredyuan" class="ContributesItem-avatar">
-                  <img class="Avatar" src="https://pic2.zhimg.com/de66ce629_m.jpg">
-                </a>
-                <div class="ContributesItem-info">
-                  <div class="ContributesItem-nameLine">
-                    <a href="https://zhuanlan.zhihu.com/alfredyuan" class="ContributesItem-name">一蓑烟雨</a>
-                  </div>
-                  <p class="ContributesItem-intro u-ellipsis">一蓑烟雨任平生</p>
-                </div>
-                <a href="https://zhuanlan.zhihu.com/alfredyuan" class="ContributesItem-entrance">进入专栏</a>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <div class="RichText PostIndex-content" v-html="textContent"></div>
       </div>
     </div>
   </transition>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
+    import { formatDate } from '../../common/js/date';
     import vArticleList from '../lists/article.vue';
     export default {
 //       name: 'v-column-details',
@@ -67,15 +46,13 @@
         data() {
             return {
               articleData: {},
-              titleImage: ''
+              titleImage: '',
+              avatarImage: '',
+              authorName: ''
             };
         },
 
         created() {
-        },
-
-        computed: {
-
         },
 
         methods: {
@@ -87,6 +64,8 @@
                   console.log(response);
                   this.articleData = response.data;
                   this.titleImage = 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=' + response.data.titleImage;
+                  this.avatarImage = 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic4.zhimg.com/' + response.data.author.avatar.id + '_l.jpg';
+                  this.authorName = response.data.column.name;
                   // $nextTick() 在dom 重新渲染完后执行
                   this.$nextTick(() => {
                     this.$store.commit('UPDATE_LOADING', false);
@@ -97,9 +76,24 @@
                 });
             }
         },
-
+        computed: {
+            textContent() {
+              return String(this.articleData.content)
+              .replace(new RegExp('https://pic1.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic1.zhimg.com')
+              .replace(new RegExp('https://pic2.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic2.zhimg.com')
+              .replace(new RegExp('https://pic3.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic3.zhimg.com')
+              .replace(new RegExp('https://pic4.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic4.zhimg.com');
+            }
+        },
         components: {
           vArticleList
+        },
+
+        filters: {
+            formatDate(time) {
+                let date = new Date(time);
+                return formatDate(date, 'yyyy-MM-dd');
+            }
         }
     };
 </script>
