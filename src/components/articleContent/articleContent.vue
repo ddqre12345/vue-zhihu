@@ -13,8 +13,8 @@
       </header>
       <div class="article-content-info">
         <div class="article-info-header">
-          <div class="article-title-image" v-show="titleImage">
-            <img alt="articleData.title" v-lazy="titleImage" class="article-title-image-pic" lazy="loading">
+          <div class="article-title-image" v-show="titleImageObj">
+            <img alt="articleData.title" v-lazy="titleImageObj" class="article-title-image-pic" lazy="loading">
           </div>
           <h1 class="article-title" v-text="articleData.title" v-cloak></h1>
           <div class="article-author-info">
@@ -52,9 +52,8 @@
               this.$store.commit('UPDATE_LOADING', true);
               this.axios.get(`/api/posts/${this.$route.params.pid}`)
                 .then((response) => {
-                  console.log(response);
                   this.articleData = response.data;
-                  this.titleImage = '' || ('http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=' + response.data.titleImage);
+                  this.titleImage = response.data.titleImage;
                   this.avatarImage = '' || ('http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic4.zhimg.com/' + response.data.author.avatar.id + '_l.jpg');
                   this.authorName = response.data.column.name;
                   // $nextTick() 在dom 重新渲染完后执行
@@ -68,6 +67,13 @@
             }
         },
         computed: {
+            titleImageObj() {
+              if (this.titleImage) {
+                return '' || ('http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=' + this.titleImage);
+              } else {
+                return '';
+              }
+            },
             textContent() {
               // 原本内容区图片链接添加了防盗链，需要转化
               return String(this.articleData.content)
