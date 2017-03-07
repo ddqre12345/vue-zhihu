@@ -1,5 +1,5 @@
 <template>
-    <transition name="fade">
+    <transition name="fade1">
         <div class="details">
             <header class="header">
                 <header class="bar bar-nav">
@@ -36,15 +36,9 @@
             };
         },
 
-        created() {
-        },
-
-        computed: {
-
-        },
-
         methods: {
             getPersonalInfo() {
+              this.$store.commit('UPDATE_LOADING', true);
               this.axios.get(`/api/columns/${this.$route.params.id}`)
                 .then((response) => {
                   this.personalData = response.data;

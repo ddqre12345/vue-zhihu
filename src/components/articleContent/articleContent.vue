@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+  <transition name="fade2">
     <div class="article-content">
       <header class="header">
         <header class="bar bar-nav">
@@ -8,27 +8,24 @@
               <span class="iconfont icon-left"></span>
             </div>
           </router-link>
-          <div class="title">{{articleData.title}}</div>
+          <div class="title" v-cloak>{{articleData.title}}</div>
         </header>
       </header>
-      <div class="Layout-main Layout-titleImage--normal" data-za-module="PostItem">
-        <div class="PostIndex-header">
-          <div class="TitleImage">
-            <img alt="articleData.title" :src="titleImage" class="TitleImage-imagePure TitleImage-imagePure--fixed" width="100%">
+      <div class="article-content-info">
+        <div class="article-info-header">
+          <div class="article-title-image" v-show="titleImage">
+            <img alt="articleData.title" v-lazy="titleImage" class="article-title-image-pic" lazy="loading">
           </div>
-          <h1 class="PostIndex-title">{{articleData.title}}</h1>
-          <div class="PostIndex-author">
-            <a href="https://www.zhihu.com/people/id47" target="_blank">
-              <img class="Avatar PostIndex-authorAvatar Avatar--xs" alt="authorName" :src="avatarImage">
+          <h1 class="article-title" v-text="articleData.title" v-cloak></h1>
+          <div class="article-author-info">
+            <a>
+              <img class="avatar-size-xs" alt="authorName" v-lazy="avatarImage" lazy="loading" v-cloak>
             </a>
-            <a href="https://www.zhihu.com/people/id47" target="_blank" class="PostIndex-authorName">{{authorName}}</a>
-            <span class="Bull"></span>
-            <div class="HoverTitle">
-              <time datetime="2015-06-29T00:10:42.000Z">{{articleData.publishedTime | formatDate}}</time>
-            </div>
+            <a v-text="authorName" v-cloak></a>
+            <div class="published-time" v-cloak>{{articleData.publishedTime | formatDate}}</div>
           </div>
         </div>
-        <div class="RichText PostIndex-content" v-html="textContent"></div>
+        <div class="rich-text" v-html="textContent"></div>
       </div>
     </div>
   </transition>
@@ -36,9 +33,7 @@
 
 <script>
     import { formatDate } from '../../common/js/date';
-    import vArticleList from '../lists/article.vue';
     export default {
-//       name: 'v-column-details',
         mounted() {
           this.getPersonalInfo();
         },
@@ -52,19 +47,15 @@
             };
         },
 
-        created() {
-        },
-
         methods: {
             getPersonalInfo() {
               this.$store.commit('UPDATE_LOADING', true);
-//              this.axios.get(`https://zhuanlan.zhihu.com/api/posts/${this.$route.params.pid}`)
-              this.axios.get(`/api/posts/20090944`)
+              this.axios.get(`/api/posts/${this.$route.params.pid}`)
                 .then((response) => {
                   console.log(response);
                   this.articleData = response.data;
-                  this.titleImage = 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=' + response.data.titleImage;
-                  this.avatarImage = 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic4.zhimg.com/' + response.data.author.avatar.id + '_l.jpg';
+                  this.titleImage = '' || ('http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=' + response.data.titleImage);
+                  this.avatarImage = '' || ('http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic4.zhimg.com/' + response.data.author.avatar.id + '_l.jpg');
                   this.authorName = response.data.column.name;
                   // $nextTick() 在dom 重新渲染完后执行
                   this.$nextTick(() => {
@@ -78,15 +69,13 @@
         },
         computed: {
             textContent() {
+              // 原本内容区图片链接添加了防盗链，需要转化
               return String(this.articleData.content)
               .replace(new RegExp('https://pic1.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic1.zhimg.com')
               .replace(new RegExp('https://pic2.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic2.zhimg.com')
               .replace(new RegExp('https://pic3.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic3.zhimg.com')
               .replace(new RegExp('https://pic4.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic4.zhimg.com');
             }
-        },
-        components: {
-          vArticleList
         },
 
         filters: {
