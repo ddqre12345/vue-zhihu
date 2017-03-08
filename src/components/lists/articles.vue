@@ -1,0 +1,51 @@
+<template>
+  <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">
+    <ul>
+      <li v-for="data in datas">
+        <v-card :data="data"></v-card>
+      </li>
+    </ul>
+  </div>
+
+</template>
+
+<script>
+  import vCard from '../newCard/articleCard.vue';
+
+  export default
+  {
+    data() {
+      return {
+        datas: [],
+        page: 0,
+        busy: false
+      };
+    },
+    methods: {
+      loadTop() {
+        this.$store.commit('UPDATE_LOADING', true);
+        this.axios.get(`/api/recommendations/posts?limit=6&offset=${this.page}`)
+                .then((response) => {
+                  this.datas = this.datas.concat(response.data);
+                  this.busy = false;
+                  this.$nextTick(() => {
+                  this.$store.commit('UPDATE_LOADING', false);
+                  });
+                })
+                .catch((response) => {
+                  console.log(response);
+                });
+              },
+      loadMore() {
+        this.busy = true;
+        this.loadTop();
+        this.page += 6;
+      }
+    },
+    components: {
+      vCard
+    }
+  };
+</script>
+<style lang="stylus" rel="stylesheet/stylus">
+</style>

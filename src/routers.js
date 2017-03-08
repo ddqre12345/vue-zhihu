@@ -40,6 +40,14 @@ const routers = [{
         });
       }
     }, {
+      path: 'articles',
+      name: 'articles',
+      component(resolve) {
+        require.ensure(['./components/lists/articles.vue'], () => {
+          resolve(require('./components/lists/articles.vue'));
+        });
+      }
+    }, {
       path: '/day',
       name: 'day',
       component(resolve) {
@@ -48,48 +56,6 @@ const routers = [{
         });
       },
       meta: {requiresAuth: true}
-    }, {
-      path: '/ios',
-      name: 'ios',
-      component(resolve) {
-        require.ensure(['./components/lists/ios.vue'], () => {
-          resolve(require('./components/lists/ios.vue'));
-        });
-      },
-      meta: {requiresAuth: true}
-    }, {
-      path: '/android',
-      name: 'android',
-      component(resolve) {
-        require.ensure(['./components/lists/android.vue'], () => {
-          resolve(require('./components/lists/android.vue'));
-        });
-      }
-    }, {
-      path: '/latestNews',
-      name: 'latestNews',
-      component(resolve) {
-        require.ensure(['./components/lists/latestNews.vue'], () => {
-          resolve(require('./components/lists/latestNews.vue'));
-        });
-      },
-      meta: {requiresAuth: true}
-    }, {
-      path: '/hotNews',
-      name: 'hotNews',
-      component(resolve) {
-        require.ensure(['./components/lists/hotNews.vue'], () => {
-          resolve(require('./components/lists/hotNews.vue'));
-        });
-      }
-    }, {
-      path: '/web',
-      name: 'web',
-      component(resolve) {
-        require.ensure(['./components/lists/web.vue'], () => {
-          resolve(require('./components/lists/web.vue'));
-        });
-      }
     }
   ]
 },

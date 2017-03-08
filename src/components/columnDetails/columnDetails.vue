@@ -3,11 +3,9 @@
         <div class="details">
             <header class="header">
                 <header class="bar bar-nav">
-                  <router-link :to="{ name: 'columns'}">
-                    <div class="pull-left">
+                    <div class="pull-left" @click="goBack">
                         <span class="iconfont icon-left"></span>
                     </div>
-                  </router-link>
                     <div class="title">{{personalData.name}}</div>
                 </header>
             </header>
@@ -37,6 +35,9 @@
         },
 
         methods: {
+            goBack() {
+              window.history.back();
+            },
             getPersonalInfo() {
               this.$store.commit('UPDATE_LOADING', true);
               this.axios.get(`/api/columns/${this.$route.params.id}`)

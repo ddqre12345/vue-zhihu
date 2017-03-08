@@ -3,11 +3,9 @@
     <div class="article-content">
       <header class="header">
         <header class="bar bar-nav">
-          <router-link :to="{ name: 'column', params: {id: $route.params.id}}">
-            <div class="pull-left">
-              <span class="iconfont icon-left"></span>
-            </div>
-          </router-link>
+          <div class="pull-left" @click="goBack">
+            <span class="iconfont icon-left"></span>
+          </div>
           <div class="title" v-cloak>{{articleData.title}}</div>
         </header>
       </header>
@@ -48,6 +46,9 @@
         },
 
         methods: {
+            goBack() {
+              window.history.back();
+            },
             getPersonalInfo() {
               this.$store.commit('UPDATE_LOADING', true);
               this.axios.get(`/api/posts/${this.$route.params.pid}`)
