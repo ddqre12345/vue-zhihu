@@ -1,25 +1,28 @@
 var path = require('path')
+var config = require('../config')
 var utils = require('./utils')
 var webpack = require('webpack')
-var config = require('../config')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
-    rules: utils.styleLoaders({
-      sourceMap: config.build.productionSourceMap,
-      extract: true
-    })
+    loaders: utils.styleLoaders({ sourceMap: config.build.productionSourceMap, extract: true })
   },
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+  },
+  vue: {
+    loaders: utils.cssLoaders({
+      sourceMap: config.build.productionSourceMap,
+      extract: true
+    })
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -31,6 +34,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         warnings: false
       }
     }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     // extract css into its own file
     new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
     // generate dist index.html with correct asset hash for caching.
@@ -89,11 +93,6 @@ if (config.build.productionGzip) {
       minRatio: 0.8
     })
   )
-}
-
-if (config.build.bundleAnalyzerReport) {
-  var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
 module.exports = webpackConfig
