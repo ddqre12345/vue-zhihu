@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 //  import { objectDate } from '../../common/js/date';
   import vColumn from '../lazyloadimg/lazyimg.vue';
   export default {
@@ -37,6 +37,7 @@
     },
     methods: {
       loadTop() {
+        console.log(this.$route);
         this.$store.commit('UPDATE_LOADING', true);
         this.axios.get(`/api/recommendations/columns?limit=6&offset=${this.page}`)
           .then((response) => {

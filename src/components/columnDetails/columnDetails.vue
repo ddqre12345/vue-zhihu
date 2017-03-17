@@ -43,7 +43,7 @@
               this.axios.get(`/api/columns/${this.$route.params.id}`)
                 .then((response) => {
                   this.personalData = response.data;
-                  this.imgId = 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic4.zhimg.com/' + response.data.avatar.id + '_l.jpg';
+                  this.imgId = 'http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com/' + response.data.avatar.id + '_l.jpg';
                   // $nextTick() 在dom 重新渲染完后执行
                   this.$nextTick(() => {
                     this.$store.commit('UPDATE_LOADING', false);

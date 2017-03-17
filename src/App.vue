@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import vMenu from './components/menu/menu.vue';
+  import vMenu from './components/menu/foot-menu.vue';
   import vHeader from './components/header/header.vue';
   import loading from './components/loading/loading.vue';
   import { mapState } from 'vuex';

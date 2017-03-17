@@ -47,15 +47,6 @@ const routers = [{
           resolve(require('./components/lists/articles.vue'));
         });
       }
-    }, {
-      path: '/day',
-      name: 'day',
-      component(resolve) {
-        require.ensure(['./components/recommend/recommend.vue'], () => {
-          resolve(require('./components/recommend/recommend.vue'));
-        });
-      },
-      meta: {requiresAuth: true}
     }
   ]
 },
