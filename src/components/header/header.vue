@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="page-cover" v-show="menuShow" @click="isShow"></div>
     <header class="header">
       <header class="bar bar-nav">
         <div class="title">{{headerTitle}}</div>

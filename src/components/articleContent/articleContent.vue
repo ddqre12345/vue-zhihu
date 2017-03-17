@@ -82,7 +82,11 @@
               .replace(new RegExp('https://pic1.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=https://pic1.zhimg.com')
               .replace(new RegExp('https://pic2.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=https://pic2.zhimg.com')
               .replace(new RegExp('https://pic3.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=https://pic3.zhimg.com')
-              .replace(new RegExp('https://pic4.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com');
+              .replace(new RegExp('https://pic4.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com')
+              .replace(new RegExp('http://pic1.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=http://pic1.zhimg.com')
+              .replace(new RegExp('http://pic2.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=http://pic2.zhimg.com')
+              .replace(new RegExp('http://pic3.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=http://pic3.zhimg.com')
+              .replace(new RegExp('http://pic4.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=http://pic4.zhimg.com');
             }
         },
 
