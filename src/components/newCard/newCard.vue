@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <router-link :to="{ name: 'article', params: {id: $route.params.id, pid: data.slug }}" class="PostListItem-titleImageWrapper" v-show="imgObj !== ''">
+    <router-link :to="{ name: 'article', params: {id: data.id, pid: data.slug }}" class="PostListItem-titleImageWrapper" v-show="imgObj !== ''">
       <img v-lazy="imgObj" lazy="loading" alt="题图" class="PostListItem-titleImage">
     </router-link>
     <div class="PostListItem-info">
@@ -30,7 +30,7 @@
     computed: {
       imgObj() {
         if (this.data.titleImage) {
-          return 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=' + this.data.titleImage.replace('_r', '_b');
+          return 'http://zhihu.garychang.cn/tiny-pic?img=' + this.data.titleImage.replace('_r', '_b');
         } else {
           return '';
         }

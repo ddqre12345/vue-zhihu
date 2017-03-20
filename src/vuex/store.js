@@ -11,7 +11,7 @@ Vue.use(Vuex);
 
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
-  'headerTitle': '专栏 · 发现',
+  'headerTitle': '专栏',
   'menus': uz.NAME_TITILE,
   'menuShow': false,
   'loadingShow': false,
@@ -22,20 +22,23 @@ const state = {
 const mutations = {
   // TODO: 放置我们的状态变更函数
   UPDATE_TITLE(state, title) {
-    console.log(title);
     state.headerTitle = title;
   },
-  UPDATE_MENUSHOW(state) {
-    state.menuShow = !state.menuShow;
+
+  UPDATE_MENUACTIVE(state, activeSite) {
+    switch (activeSite) {
+      case 'articles' : state.menuActive = 1; break;
+      case 'columns' : state.menuActive = 2; break;
+      case 'my' : state.menuActive = 3; break;
+      default: break;
+    }
   },
+
   UPDATE_LOADING(state, data) {
     state.loadingShow = data;
   },
-  UPDATE_NEWS(state) {
-    state.news = 0;
-  },
+
   UPDATE_COLUMNTITLE(state, title) {
-    console.log(title);
     state.columnTitle = title;
   }
 };

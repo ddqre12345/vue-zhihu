@@ -30,7 +30,7 @@
     computed: {
       imgObj() {
         if (this.data.titleImage) {
-          return 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=' + this.data.titleImage.replace('_r', '_b');
+          return 'http://zhihu.garychang.cn/tiny-pic?img=' + this.data.titleImage.replace('_r', '_b');
         } else {
           return '';
         }
@@ -41,8 +41,9 @@
         return msg;
       },
       columnId() {
-        if (this.data.column) {
-            return this.data.column.slug;
+        if (this.data.column_id != null) {
+            console.log(this.data.column_id);
+            return this.data.column_id;
          } else {
             return null;
          }

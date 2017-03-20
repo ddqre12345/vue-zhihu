@@ -55,7 +55,7 @@
                 .then((response) => {
                   this.articleData = response.data;
                   this.titleImage = response.data.titleImage;
-                  this.avatarImage = '' || ('http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic4.zhimg.com/' + response.data.author.avatar.id + '_l.jpg');
+                  this.avatarImage = '' || ('http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com/' + response.data.author.avatar.id + '_l.jpg');
                   this.authorName = response.data.column.name;
                   // $nextTick() 在dom 重新渲染完后执行
                   this.$nextTick(() => {
@@ -70,18 +70,23 @@
         computed: {
             titleImageObj() {
               if (this.titleImage) {
-                return '' || ('http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=' + this.titleImage);
+                return '' || ('http://zhihu.garychang.cn/tiny-pic?img=' + this.titleImage);
               } else {
                 return '';
               }
             },
+
             textContent() {
               // 原本内容区图片链接添加了防盗链，需要转化
               return String(this.articleData.content)
-              .replace(new RegExp('https://pic1.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic1.zhimg.com')
-              .replace(new RegExp('https://pic2.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic2.zhimg.com')
-              .replace(new RegExp('https://pic3.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic3.zhimg.com')
-              .replace(new RegExp('https://pic4.zhimg.com', 'gm'), 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=https://pic4.zhimg.com');
+              .replace(new RegExp('https://pic1.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=https://pic1.zhimg.com')
+              .replace(new RegExp('https://pic2.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=https://pic2.zhimg.com')
+              .replace(new RegExp('https://pic3.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=https://pic3.zhimg.com')
+              .replace(new RegExp('https://pic4.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com')
+              .replace(new RegExp('http://pic1.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=http://pic1.zhimg.com')
+              .replace(new RegExp('http://pic2.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=http://pic2.zhimg.com')
+              .replace(new RegExp('http://pic3.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=http://pic3.zhimg.com')
+              .replace(new RegExp('http://pic4.zhimg.com', 'gm'), 'http://zhihu.garychang.cn/tiny-pic?img=http://pic4.zhimg.com');
             }
         },
 

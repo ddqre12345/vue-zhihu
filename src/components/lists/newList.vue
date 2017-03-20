@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import vNewCard from '../newCard/newCard.vue';
   export default
   {
@@ -29,7 +29,7 @@
     methods: {
       loadTop() {
         this.$store.commit('UPDATE_LOADING', true);
-        this.axios.get(`https://zhuanlan.zhihu.com/api/recommendations/columns?limit=16&offset=0&seed=60`)
+        this.axios.get(`/api/recommendations/columns?limit=16&offset=0&seed=60`)
           .then((response) => {
             console.log(response);
 

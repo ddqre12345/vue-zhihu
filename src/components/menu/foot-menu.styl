@@ -1,0 +1,39 @@
+@import "../../common/css/mixin.styl"
+.foot-menu
+  position fixed
+  height 55px
+  left 0
+  right 0
+  bottom 0
+  display flex
+  justify-content space-around
+  z-index 99
+  background-color #fff
+  .menu-icon
+    width 30px
+    height 30px
+    margin-bottom 5px
+  .icon-articles
+    background url(../../assets/read.png) no-repeat center
+    background-size 100% 100%
+  .icon-columns
+    background url(../../assets/text.png) no-repeat center
+    background-size 100% 100%
+  .icon-my
+    background url(../../assets/my.png) no-repeat center
+    background-size 100% 100%
+  .menu-item.active
+    .icon-articles
+      background url(../../assets/read-active.png) no-repeat center
+      background-size 100% 100%
+    .icon-columns
+      background url(../../assets/text-active.png) no-repeat center
+      background-size 100% 100%
+    .icon-my
+      background url(../../assets/my-active.png) no-repeat center
+      background-size 100% 100%
+    .menu-text
+      color: #3385ff
+
+
+
