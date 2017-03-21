@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="page-cover" v-show="menuShow" @click="isShow"></div>
     <header class="header">
       <header class="bar bar-nav">
         <div class="title">{{headerTitle}}</div>
@@ -10,7 +9,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   import vMenu from '../menu/foot-menu.vue';
   import {mapState} from 'vuex';
   export default
@@ -30,9 +29,6 @@
       ])
     },
     methods: {
-      isShow() {
-       this.$store.commit('UPDATE_MENUSHOW');
-      }
     }
   };
 </script>

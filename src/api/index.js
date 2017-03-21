@@ -18,22 +18,16 @@ export default {
         });
     },
 
+    getPersonalInfo(columnId) {
+        return axios.get(ColumnArticleListResource + columnId);
+    },
+
     getColumnArticleList(columnId, size, offset) {
-        return axios.get(ColumnArticleListResource + columnId + '/posts', {
-            params: {
-                limit: size || 6,
-                offset: offset || 0
-            }
-        });
+        return axios.get(ColumnArticleListResource + columnId + '/posts?limit=' + size + '&offset=' + offset);
     },
 
     getColumnList(columnId, size, offset) {
-        return axios.get(ColumnListResource + columnId, {
-                params: {
-                    limit: size || 6,
-                    offset: offset || 0
-                }
-            });
+        return axios.get(ColumnListResource + columnId + '/posts?limit=' + size + '&offset=' + offset);
     },
 
     getArticleDetail(articleId) {

@@ -13,7 +13,6 @@ Vue.use(Vuex);
 const state = {
   'headerTitle': '专栏',
   'menus': uz.NAME_TITILE,
-  'menuShow': false,
   'loadingShow': false,
   'news': 5,
   'columnTitle': ''

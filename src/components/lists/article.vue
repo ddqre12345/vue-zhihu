@@ -9,7 +9,7 @@
 
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   import api from '../../api/index';
   import vCard from '../newCard/newCard.vue';
   export default

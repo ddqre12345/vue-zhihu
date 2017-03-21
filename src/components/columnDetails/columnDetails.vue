@@ -19,7 +19,7 @@
     </transition>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
     import api from '../../api/index';
     import vArticleList from '../lists/article.vue';
     export default {
@@ -41,7 +41,7 @@
             },
             getPersonalInfo() {
               this.$store.commit('UPDATE_LOADING', true);
-                api.getArticleDetail(this.$route.params.id)
+                api.getPersonalInfo(this.$route.params.id)
                     .then((response) => {
                         this.personalData = response.data;
                         this.imgId = 'http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com/' + response.data.avatar.id + '_l.jpg';
