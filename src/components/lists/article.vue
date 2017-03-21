@@ -9,7 +9,8 @@
 
 </template>
 
-<script>
+<script type="text/ecmascript-6">
+  import api from '../../api/index';
   import vCard from '../newCard/newCard.vue';
   export default
   {
@@ -32,18 +33,18 @@
     methods: {
       loadTop() {
         this.$store.commit('UPDATE_LOADING', true);
-        this.axios.get(`/api/columns/${this.$route.params.id}/posts?limit=6&offset=${this.page}`)
-                .then((response) => {
-                  this.datas = this.datas.concat(response.data);
-                  this.busy = false;
-                  this.$nextTick(() => {
-                  this.$store.commit('UPDATE_LOADING', false);
-                  });
-                })
-                .catch((response) => {
-                  console.log(response);
-                });
-              },
+        api.getColumnList(this.$route.params.id, 6, this.page)
+            .then((response) => {
+              this.datas = this.datas.concat(response.data);
+              this.busy = false;
+              this.$nextTick(() => {
+              this.$store.commit('UPDATE_LOADING', false);
+              });
+            })
+            .catch((response) => {
+              console.log(response);
+            });
+      },
       loadMore() {
         this.busy = true;
         this.loadTop();

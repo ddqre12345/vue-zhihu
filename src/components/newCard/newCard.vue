@@ -37,8 +37,7 @@
       },
       summary() {
         var re1 = new RegExp('<.+?>', 'g');
-        var msg = this.data.content.replace(re1, '').substr(0, 15);
-        return msg;
+        return this.data.content.replace(re1, '').substr(0, 15);
       }
     },
     filters: {

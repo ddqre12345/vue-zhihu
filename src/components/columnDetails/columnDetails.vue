@@ -19,7 +19,8 @@
     </transition>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
+    import api from '../../api/index';
     import vArticleList from '../lists/article.vue';
     export default {
        name: 'v-column-details',
@@ -40,18 +41,18 @@
             },
             getPersonalInfo() {
               this.$store.commit('UPDATE_LOADING', true);
-              this.axios.get(`/api/columns/${this.$route.params.id}`)
-                .then((response) => {
-                  this.personalData = response.data;
-                  this.imgId = 'http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com/' + response.data.avatar.id + '_l.jpg';
-                  // $nextTick() 在dom 重新渲染完后执行
-                  this.$nextTick(() => {
-                    this.$store.commit('UPDATE_LOADING', false);
-                  });
-                })
-                .catch((response) => {
-                  console.log(response);
-                });
+                api.getArticleDetail(this.$route.params.id)
+                    .then((response) => {
+                        this.personalData = response.data;
+                        this.imgId = 'http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com/' + response.data.avatar.id + '_l.jpg';
+                        // $nextTick() 在dom 重新渲染完后执行
+                        this.$nextTick(() => {
+                            this.$store.commit('UPDATE_LOADING', false);
+                        });
+                    })
+                    .catch((response) => {
+                        console.log(response);
+                    });
             }
         },
 

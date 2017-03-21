@@ -29,7 +29,8 @@
   </transition>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
+    import api from '../../api/index';
     import { formatDate } from '../../common/js/date';
     export default {
         mounted() {
@@ -50,21 +51,21 @@
               window.history.back();
             },
             getPersonalInfo() {
-              this.$store.commit('UPDATE_LOADING', true);
-              this.axios.get(`/api/posts/${this.$route.params.pid}`)
-                .then((response) => {
-                  this.articleData = response.data;
-                  this.titleImage = response.data.titleImage;
-                  this.avatarImage = '' || ('http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com/' + response.data.author.avatar.id + '_l.jpg');
-                  this.authorName = response.data.column.name;
-                  // $nextTick() 在dom 重新渲染完后执行
-                  this.$nextTick(() => {
-                    this.$store.commit('UPDATE_LOADING', false);
-                  });
-                })
-                .catch((response) => {
-                  console.log(response);
-                });
+                this.$store.commit('UPDATE_LOADING', true);
+                api.getArticleDetail(this.$route.params.pid)
+                    .then((response) => {
+                        this.articleData = response.data;
+                        this.titleImage = response.data.titleImage;
+                        this.avatarImage = '' || ('http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com/' + response.data.author.avatar.id + '_l.jpg');
+                        this.authorName = response.data.column.name;
+                        // $nextTick() 在dom 重新渲染完后执行
+                        this.$nextTick(() => {
+                            this.$store.commit('UPDATE_LOADING', false);
+                        });
+                    })
+                    .catch((response) => {
+                        console.log(response);
+                    });
             }
         },
         computed: {

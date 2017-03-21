@@ -42,7 +42,6 @@
       },
       columnId() {
         if (this.data.column_id != null) {
-            console.log(this.data.column_id);
             return this.data.column_id;
          } else {
             return null;

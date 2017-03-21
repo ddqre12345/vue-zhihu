@@ -9,7 +9,8 @@
 
 </template>
 
-<script>
+<script type="text/ecmascript-6">
+  import api from '../../api/index';
   import vCard from '../newCard/articleCard.vue';
 
   export default
@@ -24,7 +25,7 @@
     methods: {
       loadTop() {
         this.$store.commit('UPDATE_LOADING', true);
-        this.axios.get(`/api/recommendations/posts?limit=6&offset=${this.page}`)
+        api.getRecommendActicleList(6, this.page)
                 .then((response) => {
                   this.datas = this.datas.concat(response.data);
                   this.busy = false;
@@ -35,7 +36,7 @@
                 .catch((response) => {
                   console.log(response);
                 });
-              },
+      },
       loadMore() {
         this.busy = true;
         this.loadTop();
