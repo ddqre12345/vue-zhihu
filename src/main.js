@@ -54,7 +54,7 @@ const routerApp = new Vue({
  *
  *
  */
-if (!loadFromlLocal('gank', 'wecome', false)) {
-  router.push('/wecome');
+if (!loadFromlLocal('gank', 'articles', false)) {
+  router.push('/articles');
 }
 export default routerApp;

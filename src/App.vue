@@ -32,9 +32,6 @@
     methods: {
       isShow() {
         this.show = !this.show;
-      },
-      hideDetail() {
-        this.detailShow = false;
       }
     }
   };

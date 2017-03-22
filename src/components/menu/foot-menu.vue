@@ -1,6 +1,6 @@
 <template>
   <div class="foot-menu" :class="{'show': show}">
-    <div v-for='menu in menus' @click="updateHeader(MENU_CONVERT[menu], menu)">
+    <div v-for='menu in menus' @click="updateHeader(MENU_CONVERT[menu], menu)" v-once>
       <router-link :to="menu" class="menu-item">
         <div class="menu-icon" :class="'icon-'+ menu"></div>
         <span class="menu-text">{{MENU_CONVERT[menu]}}</span>

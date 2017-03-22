@@ -16,7 +16,7 @@ const routers = [{
   },
   children: [
     {
-      path: '/columns/',
+      path: '/columns',
       name: 'columns',
       component(resolve) {
         require.ensure(['./components/column/column.vue'], () => {
@@ -24,7 +24,7 @@ const routers = [{
         });
       }
     }, {
-      path: '/column/:id',
+      path: 'column/:id',
       name: 'column',
       component(resolve) {
         require.ensure(['./components/columnDetails/columnDetails.vue'], () => {
@@ -32,7 +32,7 @@ const routers = [{
         });
       }
     }, {
-      path: '/article/:id/:pid',
+      path: 'article/:id/:pid',
       name: 'article',
       component(resolve) {
         require.ensure(['./components/articleContent/articleContent.vue'], () => {
