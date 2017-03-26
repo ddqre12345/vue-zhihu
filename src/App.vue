@@ -2,7 +2,10 @@
 <div>
  <v-header></v-header>
   <loading :show="loadingShow"></loading>
-  <router-view></router-view>
+  <keep-alive>
+    <router-view v-if="!$route.meta.notKeepAlive"></router-view>
+  </keep-alive>
+  <router-view v-if="$route.meta.notKeepAlive"></router-view>
 </div>
 </template>
 
@@ -66,5 +69,4 @@
     height: 100%;
     background: red;
   }
-
 </style>

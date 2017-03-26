@@ -14,7 +14,6 @@ const state = {
   'headerTitle': '专栏',
   'menus': uz.NAME_TITILE,
   'loadingShow': false,
-  'news': 5,
   'columnTitle': ''
 };
 // 创建一个对象存储一系列我们接下来要写的 mutation 函数

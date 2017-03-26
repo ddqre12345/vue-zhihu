@@ -1,5 +1,5 @@
 <template>
-  <div class="recommend-wrapper" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+  <div class="recommend-wrapper" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">
     <div class="recommend-center">
       <figure v-for="data in leftData">
         <router-link :to="{ name: 'column', params: { id: data.slug }}">
@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   import api from '../../api/index';
   import vColumn from '../lazyloadimg/lazyimg.vue';
 

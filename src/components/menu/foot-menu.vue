@@ -1,7 +1,7 @@
 <template>
   <div class="foot-menu" :class="{'show': show}">
-    <div v-for='menu in menus' @click="updateHeader(MENU_CONVERT[menu], menu)" v-once>
-      <router-link :to="menu" class="menu-item">
+    <div v-for='menu in menus' @click="updateHeader(MENU_CONVERT[menu], menu)">
+      <router-link :to="{ path: menu }" class="menu-item" replace>
         <div class="menu-icon" :class="'icon-'+ menu"></div>
         <span class="menu-text">{{MENU_CONVERT[menu]}}</span>
       </router-link>
@@ -11,7 +11,7 @@
 
 <script>
   import { mapState } from 'vuex';
-  const MENU_CONVERT = { 'articles': '发现', 'columns': '专栏', 'my': '我的' };
+  const MENU_CONVERT = { 'articles': '发现', 'columns': '专栏' };
   export default
   {
     name: 'v-menu',

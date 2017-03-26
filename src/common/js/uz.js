@@ -1,1 +1,1 @@
-export const NAME_TITILE = ['articles', 'columns', 'my'];
+export const NAME_TITILE = ['articles', 'columns'];

@@ -16,13 +16,14 @@ const routers = [{
   },
   children: [
     {
-      path: '/columns',
+      path: 'columns',
       name: 'columns',
       component(resolve) {
         require.ensure(['./components/column/column.vue'], () => {
           resolve(require('./components/column/column.vue'));
         });
-      }
+      },
+      mate: { keepAlive: true }
     }, {
       path: 'column/:id',
       name: 'column',
@@ -30,28 +31,30 @@ const routers = [{
         require.ensure(['./components/columnDetails/columnDetails.vue'], () => {
           resolve(require('./components/columnDetails/columnDetails.vue'));
         });
-      }
+      },
+      mate: { keepAlive: false }
     }, {
-      path: 'article/:id/:pid',
+      path: 'article',
       name: 'article',
       component(resolve) {
         require.ensure(['./components/articleContent/articleContent.vue'], () => {
           resolve(require('./components/articleContent/articleContent.vue'));
         });
-      }
+      },
+      mate: { keepAlive: false }
     }, {
-      path: '/articles',
+      path: 'articles',
       name: 'articles',
       component(resolve) {
         require.ensure(['./components/lists/articles.vue'], () => {
           resolve(require('./components/lists/articles.vue'));
         });
-      }
+      },
+      mate: { keepAlive: true }
     }
   ]
-},
-  {
-    path: '/wecome',
+}, {
+    path: 'wecome',
     name: 'wecome',
     component(resolve) {
       require.ensure(['./components/wecome/wecome.vue'], () => {

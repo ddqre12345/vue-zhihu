@@ -2,9 +2,6 @@ import Vue from 'vue';
 import store from './vuex/store';
 import VueRouter from 'vue-router';
 import routes from './routers'; // 引入路由配置
-import vueResource from 'vue-resource';
-import axios from 'axios';
-import VueAxios from 'vue-axios';
 import infiniteScroll from 'vue-infinite-scroll';  // 引入滑动模块
 import VueLazyload from 'vue-lazyload';  // 引入图片懒加载模块
 import {loadFromlLocal} from './common/js/store';  // 公共方法：本地缓存
@@ -13,8 +10,6 @@ import 'common/css/index.styl'; // 引入公共样式
 // 注册组件
 Vue.use(infiniteScroll);
 Vue.use(VueRouter);
-Vue.use(vueResource);
-Vue.use(VueAxios, axios);
 
 // error，loading是图片路径, 用require引入
 Vue.use(VueLazyload, {
@@ -25,19 +20,35 @@ Vue.use(VueLazyload, {
 );
 
 const scrollBehavior = (to, from, savedPosition) => {
+  console.log(savedPosition);
   if (savedPosition) {
+    // savedPosition is only available for popstate navigations.
     return savedPosition;
   } else {
-    return { x: 0, y: 0 };
+    const position = {};
+    // new navigation.
+    // scroll to anchor by returning the selector
+    if (to.hash) {
+      position.selector = to.hash;
+    }
+    // check if any matched route config has meta that requires scrolling to top
+    if (to.matched.some(m => m.meta.scrollToTop)) {
+      // cords will be used if no selector is provided,
+      // or if the selector didn't match any element.
+      position.x = 0;
+      position.y = 0;
+    }
+    // if the returned position is falsy or an empty object,
+    // will retain current scroll position.
+    return position;
   }
 };
 
 const router = new VueRouter({
   mode: 'history',
-  base: __dirname,
-  scrollBehavior,
   'linkActiveClass': 'active',
-  routes // （缩写）相当于 routes: routes
+  routes, // （缩写）相当于 routes: routes
+  scrollBehavior
 });
 /**
  * 创建和挂载根实例。

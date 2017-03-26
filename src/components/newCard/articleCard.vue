@@ -1,25 +1,17 @@
 <template>
   <div class="card">
-    <router-link :to="{ name: 'article', params: {id: columnId, pid: data.slug }}" class="PostListItem-titleImageWrapper" v-show="imgObj !== ''">
-      <img v-lazy="imgObj" lazy="loading" alt="题图" class="PostListItem-titleImage">
-    </router-link>
-    <div class="PostListItem-info">
-      <p class="time">{{data.publishedTime | formatDate}}</p>
-      <router-link :to="{ name: 'article', params: {id: columnId, pid: data.slug }}">
-        <p class="title">{{data.title}}</p>
-      </router-link>
-      <div class="PostListItem-footer">
-        <p>
-          <span>{{data.likesCount}}赞</span>
-          <span> · </span>
-          <span>{{data.commentsCount}}条评论</span>
-        </p>
-      </div>
+    <div class="list-info">
+      <img v-lazy="avatarImage" lazy="loading" class="avatar">
+      <span class="author">{{authors}}</span>
+      <div class="time">{{data.publishedTime | formatDate}}</div>
     </div>
+    <img  v-lazy="titleImage" lazy="loading" class="title-image">
+    <h1 class="title">{{data.title}}</h1>
+    <p class="summary" v-html="summary"></p>
   </div>
 </template>
 <script>
-  import { formatDate } from '../../common/js/date';
+  import { timeDiff } from '../../common/js/date';
   export default {
     name: 'v-card',
     props: {
@@ -28,7 +20,7 @@
       }
     },
     computed: {
-      imgObj() {
+      titleImage() {
         if (this.data.titleImage) {
           return 'http://zhihu.garychang.cn/tiny-pic?img=' + this.data.titleImage.replace('_r', '_b');
         } else {
@@ -37,7 +29,7 @@
       },
       summary() {
         let re1 = new RegExp('<.+?>', 'g');
-        return this.data.content.replace(re1, '').substr(0, 15);
+        return this.data.summary.replace(re1, '').substr(1, 85) + '...';
       },
       columnId() {
         if (this.data.column_id != null) {
@@ -45,16 +37,22 @@
          } else {
             return null;
          }
+      },
+      authors() {
+        return this.data.author.name;
+      },
+      avatarImage() {
+        return '' || ('http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com/' + this.data.author.avatar.id + '_xs.jpg');
       }
     },
     filters: {
         formatDate(time) {
             let date = new Date(time);
-            return formatDate(date, 'yyyy-MM-dd');
+            return timeDiff(date);
         }
     }
   };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "newCard.styl";
+  @import "articleCard.styl";
 </style>

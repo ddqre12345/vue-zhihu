@@ -1,15 +1,14 @@
 <template>
-  <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">
+  <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
     <ul>
-      <li v-for="data in datas">
-        <v-card :data="data"></v-card>
+      <li v-for="data in datas" @click="goArticleDetail(data.slug)">
+          <v-card :data="data"></v-card>
       </li>
     </ul>
   </div>
-
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   import api from '../../api/index';
   import vCard from '../newCard/articleCard.vue';
 
@@ -19,7 +18,8 @@
       return {
         datas: [],
         page: 0,
-        busy: false
+        busy: false,
+        articleContent: {}
       };
     },
     methods: {
@@ -41,6 +41,14 @@
         this.busy = true;
         this.loadTop();
         this.page += 6;
+      },
+      goArticleDetail(pid) {
+        this.$router.push({
+            path: 'article',
+            query: {
+              pid: pid
+            }
+        });
       }
     },
     components: {
@@ -48,5 +56,3 @@
     }
   };
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
-</style>

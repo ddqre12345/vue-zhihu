@@ -1,6 +1,6 @@
 <template>
-  <transition name="fade2">
-    <div class="article-content">
+  <transition name="fade">
+    <div class="article-content" v-show='showFlag'>
       <header class="header">
         <header class="bar bar-nav">
           <div class="pull-left" @click="goBack">
@@ -29,35 +29,44 @@
   </transition>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
     import api from '../../api/index';
     import { formatDate } from '../../common/js/date';
     export default {
-        mounted() {
-          this.getPersonalInfo();
-        },
-
         data() {
             return {
               articleData: {},
               titleImage: '',
               avatarImage: '',
-              authorName: ''
+              authorName: '',
+              showFlag: false
             };
+        },
+
+         beforeRouteEnter(to, from, next) {
+          next(vm => {
+            vm.getPersonalInfo();
+          });
+        },
+        beforeRouteLeave(to, from, next) {
+          next(vm => {
+            vm.showFlag = false;
+          });
         },
 
         methods: {
             goBack() {
-              window.history.back();
+              this.$router.go(-1);
             },
             getPersonalInfo() {
                 this.$store.commit('UPDATE_LOADING', true);
-                api.getArticleDetail(this.$route.params.pid)
+                api.getArticleDetail(this.$route.query.pid)
                     .then((response) => {
                         this.articleData = response.data;
                         this.titleImage = response.data.titleImage;
                         this.avatarImage = '' || ('http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com/' + response.data.author.avatar.id + '_l.jpg');
                         this.authorName = response.data.column.name;
+                        this.showFlag = true;
                         // $nextTick() 在dom 重新渲染完后执行
                         this.$nextTick(() => {
                             this.$store.commit('UPDATE_LOADING', false);

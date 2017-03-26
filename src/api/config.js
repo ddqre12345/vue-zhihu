@@ -1,5 +1,5 @@
 const config = {
-    site: 'bird.ioliu.cn/v1?url=',
-    method: 'https://zhuanlan.zhihu.com'
+    site: '',
+    method: ''
 };
-export const API_ROOT = 'https://'.concat(config.site, config.method);
+export const API_ROOT = ''.concat(config.site, config.method);
