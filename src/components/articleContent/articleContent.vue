@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="article-content" v-show='showFlag'>
+    <div class="article-content">
       <header class="header">
         <header class="bar bar-nav">
           <div class="pull-left" @click="goBack">
@@ -9,7 +9,7 @@
           <div class="title" v-cloak>{{articleData.title}}</div>
         </header>
       </header>
-      <div class="article-content-info">
+      <div class="article-content-info" v-show='showFlag'>
         <div class="article-info-header">
           <div class="article-title-image" v-show="titleImageObj">
             <img alt="articleData.title" v-lazy="titleImageObj" class="article-title-image-pic" lazy="loading">
@@ -33,6 +33,9 @@
     import api from '../../api/index';
     import { formatDate } from '../../common/js/date';
     export default {
+        mounted: function() {
+            this.getPersonalInfo();
+        },
         data() {
             return {
               articleData: {},
@@ -43,19 +46,9 @@
             };
         },
 
-         beforeRouteEnter(to, from, next) {
-          next(vm => {
-            vm.getPersonalInfo();
-          });
-        },
-        beforeRouteLeave(to, from, next) {
-          next(vm => {
-            vm.showFlag = false;
-          });
-        },
-
         methods: {
             goBack() {
+              this.showFlag = false;
               this.$router.go(-1);
             },
             getPersonalInfo() {

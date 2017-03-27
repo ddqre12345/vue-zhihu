@@ -6,7 +6,6 @@
       </li>
     </ul>
   </div>
-
 </template>
 
 <script>
@@ -27,9 +26,7 @@
         busy: false
       };
     },
-    computed: {
 
-    },
     methods: {
       loadTop() {
         this.$store.commit('UPDATE_LOADING', true);
@@ -38,7 +35,7 @@
               this.datas = this.datas.concat(response.data);
               this.busy = false;
               this.$nextTick(() => {
-              this.$store.commit('UPDATE_LOADING', false);
+                this.$store.commit('UPDATE_LOADING', false);
               });
             })
             .catch((response) => {

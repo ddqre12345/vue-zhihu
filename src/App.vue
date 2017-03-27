@@ -1,11 +1,11 @@
 <template>
 <div>
- <v-header></v-header>
-  <loading :show="loadingShow"></loading>
-  <keep-alive>
-    <router-view v-if="!$route.meta.notKeepAlive"></router-view>
-  </keep-alive>
-  <router-view v-if="$route.meta.notKeepAlive"></router-view>
+    <v-header></v-header>
+    <loading :show="loadingShow"></loading>
+    <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
 </div>
 </template>
 

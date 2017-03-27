@@ -1,5 +1,5 @@
 <template>
-  <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+  <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">
     <ul>
       <li v-for="data in datas" @click="goArticleDetail(data.slug)">
           <v-card :data="data"></v-card>
@@ -17,20 +17,21 @@
     data() {
       return {
         datas: [],
-        page: 0,
+        offset: 0,
         busy: false,
         articleContent: {}
       };
     },
+
     methods: {
       loadTop() {
         this.$store.commit('UPDATE_LOADING', true);
-        api.getRecommendActicleList(6, this.page)
+        api.getRecommendActicleList(6, this.offset)
                 .then((response) => {
                   this.datas = this.datas.concat(response.data);
                   this.busy = false;
                   this.$nextTick(() => {
-                  this.$store.commit('UPDATE_LOADING', false);
+                    this.$store.commit('UPDATE_LOADING', false);
                   });
                 })
                 .catch((response) => {
@@ -40,7 +41,7 @@
       loadMore() {
         this.busy = true;
         this.loadTop();
-        this.page += 6;
+        this.offset += 6;
       },
       goArticleDetail(pid) {
         this.$router.push({

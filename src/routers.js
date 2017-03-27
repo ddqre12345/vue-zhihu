@@ -23,7 +23,7 @@ const routers = [{
           resolve(require('./components/column/column.vue'));
         });
       },
-      mate: { keepAlive: true }
+      meta: { keepAlive: true }
     }, {
       path: 'column/:id',
       name: 'column',
@@ -32,7 +32,7 @@ const routers = [{
           resolve(require('./components/columnDetails/columnDetails.vue'));
         });
       },
-      mate: { keepAlive: false }
+      meta: { keepAlive: false }
     }, {
       path: 'article',
       name: 'article',
@@ -41,7 +41,7 @@ const routers = [{
           resolve(require('./components/articleContent/articleContent.vue'));
         });
       },
-      mate: { keepAlive: false }
+      meta: { keepAlive: false }
     }, {
       path: 'articles',
       name: 'articles',
@@ -50,7 +50,7 @@ const routers = [{
           resolve(require('./components/lists/articles.vue'));
         });
       },
-      mate: { keepAlive: true }
+      meta: { keepAlive: true }
     }
   ]
 }, {
