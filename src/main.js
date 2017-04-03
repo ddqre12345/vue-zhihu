@@ -14,7 +14,7 @@ Vue.use(VueRouter);
 // error，loading是图片路径, 用require引入
 Vue.use(VueLazyload, {
     error: require('./assets/404.png'),
-    loading: require('./assets/loading.gif'),
+    loading: require('./assets/loading.jpg'),
     attempt: 1
   }
 );

@@ -12,23 +12,22 @@
       <div class="article-content-info" v-show='showFlag'>
         <div class="article-info-header">
           <div class="article-title-image" v-show="titleImageObj">
-            <img alt="articleData.title" v-lazy="titleImageObj" class="article-title-image-pic" lazy="loading">
+            <img  v-lazy="titleImageObj" class="article-title-image-pic" lazy="loading">
           </div>
-          <h1 class="article-title" v-text="articleData.title" v-cloak></h1>
           <div class="article-author-info">
             <a>
-              <img class="avatar-size-xs" alt="authorName" v-lazy="avatarImage" lazy="loading" v-cloak>
+                <img class="avatar-size-xs" alt="authorName" v-lazy="avatarImage" lazy="loading" v-cloak>
             </a>
-            <a v-text="authorName" v-cloak></a>
-            <div class="published-time" v-cloak>{{articleData.publishedTime | formatDate}}</div>
+            <a v-text="authorName" class="author-name"></a>
+            <p v-text="authorBio" class="author-bio"></p>
           </div>
+          <h1 class="article-title" v-text="articleData.title" v-cloak></h1>
         </div>
         <div class="rich-text" v-html="textContent"></div>
       </div>
     </div>
   </transition>
 </template>
-
 <script>
     import api from '../../api/index';
     import { formatDate } from '../../common/js/date';
@@ -42,6 +41,7 @@
               titleImage: '',
               avatarImage: '',
               authorName: '',
+              authorBio: '',
               showFlag: false
             };
         },
@@ -56,9 +56,11 @@
                 api.getArticleDetail(this.$route.query.pid)
                     .then((response) => {
                         this.articleData = response.data;
-                        this.titleImage = response.data.titleImage;
-                        this.avatarImage = '' || ('http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com/' + response.data.author.avatar.id + '_l.jpg');
-                        this.authorName = response.data.column.name;
+                        this.titleImage = this.articleData.titleImage || '';
+                        this.avatarImage = ('http://zhihu.garychang.cn/tiny-pic?img=https://pic4.zhimg.com/' + response.data.author.avatar.id + '_l.jpg');
+                        this.authorName = this.articleData.author.name || '';
+                        this.authorBio = this.articleData.author.bio || '';
+                        console.log(this.articleData.author.name);
                         this.showFlag = true;
                         // $nextTick() 在dom 重新渲染完后执行
                         this.$nextTick(() => {
