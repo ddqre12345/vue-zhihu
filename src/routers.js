@@ -19,17 +19,17 @@ const routers = [{
       path: 'columns',
       name: 'columns',
       component(resolve) {
-        require.ensure(['./components/column/column.vue'], () => {
-          resolve(require('./components/column/column.vue'));
+        require.ensure(['./components/lists/columns.vue'], () => {
+          resolve(require('./components/lists/columns.vue'));
         });
       },
       meta: { keepAlive: true }
     }, {
-      path: 'column/:id',
+      path: 'column',
       name: 'column',
       component(resolve) {
-        require.ensure(['./components/columnDetails/columnDetails.vue'], () => {
-          resolve(require('./components/columnDetails/columnDetails.vue'));
+        require.ensure(['./components/content/columnDetails.vue'], () => {
+          resolve(require('./components/content/columnDetails.vue'));
         });
       },
       meta: { keepAlive: false }
@@ -37,8 +37,8 @@ const routers = [{
       path: 'article',
       name: 'article',
       component(resolve) {
-        require.ensure(['./components/articleContent/articleContent.vue'], () => {
-          resolve(require('./components/articleContent/articleContent.vue'));
+        require.ensure(['./components/content/articleContent.vue'], () => {
+          resolve(require('./components/content/articleContent.vue'));
         });
       },
       meta: { keepAlive: false }
@@ -53,14 +53,6 @@ const routers = [{
       meta: { keepAlive: true }
     }
   ]
-}, {
-    path: 'wecome',
-    name: 'wecome',
-    component(resolve) {
-      require.ensure(['./components/wecome/wecome.vue'], () => {
-        resolve(require('./components/wecome/wecome.vue'));
-      });
-    }
-  }];
+}];
 
 export default routers;

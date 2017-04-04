@@ -10,7 +10,7 @@
 
 <script>
   import api from '../../api/index';
-  import vCard from '../newCard/articleCard.vue';
+  import vCard from '../card/articleCard.vue';
 
   export default
   {

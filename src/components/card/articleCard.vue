@@ -3,7 +3,7 @@
     <div class="list-info">
       <img v-lazy="avatarImage" lazy="loading" class="avatar">
       <span class="author">{{authors}}</span>
-      <div class="time">{{data.publishedTime | formatDate}}</div>
+      <div class="time">{{data.publishedTime | timeDiff}}</div>
     </div>
     <img  v-lazy="titleImage" lazy="loading" class="title-image">
     <h1 class="title">{{data.title}}</h1>
@@ -46,7 +46,7 @@
       }
     },
     filters: {
-        formatDate(time) {
+        timeDiff(time) {
             let date = new Date(time);
             return timeDiff(date);
         }

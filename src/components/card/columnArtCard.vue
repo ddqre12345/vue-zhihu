@@ -1,14 +1,10 @@
 <template>
-  <div class="card">
-    <router-link :to="{ name: 'article', params: {id: data.id, pid: data.slug }}" class="PostListItem-titleImageWrapper" v-show="imgObj !== ''">
-      <img v-lazy="imgObj" lazy="loading" alt="题图" class="PostListItem-titleImage">
-    </router-link>
-    <div class="PostListItem-info">
-      <p class="time">{{data.publishedTime | formatDate}}</p>
-      <router-link :to="{ name: 'article', params: { pid: data.slug }}">
-        <p class="title">{{data.title}}</p>
-      </router-link>
-      <div class="PostListItem-footer">
+  <div class="column-card">
+    <img v-lazy="imgObj" lazy="loading" class="article-images">
+    <div class="article-info">
+      <p class="time">{{data.publishedTime | timeDiff}}</p>
+      <p class="title">{{data.title}}</p>
+      <div class="article-hot">
         <p>
           <span>{{data.likesCount}}赞</span>
           <span> · </span>
@@ -19,9 +15,9 @@
   </div>
 </template>
 <script>
-  import { formatDate } from '../../common/js/date';
+  import { timeDiff } from '../../common/js/date';
   export default {
-    name: 'v-new-card',
+    name: 'v-column-art-card',
     props: {
       data: {
         type: Object
@@ -41,13 +37,13 @@
       }
     },
     filters: {
-        formatDate(time) {
+        timeDiff(time) {
             let date = new Date(time);
-            return formatDate(date, 'yyyy-MM-dd');
+            return timeDiff(date);
         }
     }
   };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "newCard.styl";
+  @import "columnArtCard.styl";
 </style>

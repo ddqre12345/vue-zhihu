@@ -1,26 +1,21 @@
 <template>
   <div class="recommend-wrapper" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">
     <div class="recommend-center">
-      <figure v-for="data in leftData">
-        <router-link :to="{ name: 'column', params: { id: data.slug }}">
+      <figure v-for="data in leftData" @click="goColumnDetail(data.slug)">
           <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
-        </router-link>
       </figure>
     </div>
     <div class="recommend-center">
-      <figure v-for="data in rightData">
-        <router-link :to="{ name: 'column', params: { id: data.slug }}">
+      <figure v-for="data in rightData" @click="goColumnDetail(data.slug)">
           <v-column :imgUrl="data.avatar.id" :data="data"></v-column>
-        </router-link>
       </figure>
     </div>
-    <router-view class="view"></router-view>
   </div>
 </template>
 
 <script>
   import api from '../../api/index';
-  import vColumn from '../lazyloadimg/lazyimg.vue';
+  import vColumn from '../content/columnContent.vue';
 
   export default {
     data() {
@@ -61,11 +56,19 @@
         this.busy = true;
         this.loadTop();
         this.page = this.page + 6;
+      },
+      goColumnDetail(id) {
+        this.$router.push({
+            path: 'column',
+            query: {
+              id: id
+            }
+        });
       }
     }
   };
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "column.styl";
+  @import "columns.styl";
 </style>

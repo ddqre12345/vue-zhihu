@@ -1,7 +1,7 @@
 <template>
   <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">
     <ul>
-      <li v-for="data in datas">
+      <li v-for="data in datas" @click="goArticleDetail(data.slug)">
         <v-card :data="data"></v-card>
       </li>
     </ul>
@@ -10,7 +10,7 @@
 
 <script>
   import api from '../../api/index';
-  import vCard from '../newCard/newCard.vue';
+  import vCard from '../card/columnArtCard.vue';
   export default
   {
     name: 'v-article-list',
@@ -30,7 +30,7 @@
     methods: {
       loadTop() {
         this.$store.commit('UPDATE_LOADING', true);
-        api.getColumnList(this.$route.params.id, 6, this.page)
+        api.getColumnList(this.$route.query.id, 6, this.page)
             .then((response) => {
               this.datas = this.datas.concat(response.data);
               this.busy = false;
@@ -46,6 +46,14 @@
         this.busy = true;
         this.loadTop();
         this.page += 6;
+      },
+      goArticleDetail(pid) {
+        this.$router.push({
+            path: 'article',
+            query: {
+              pid: pid
+            }
+        });
       }
     },
     components: {

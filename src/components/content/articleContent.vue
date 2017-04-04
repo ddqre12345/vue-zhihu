@@ -15,11 +15,13 @@
             <img  v-lazy="titleImageObj" class="article-title-image-pic" lazy="loading">
           </div>
           <div class="article-author-info">
-            <a>
+            <div class="author-image">
                 <img class="avatar-size-xs" alt="authorName" v-lazy="avatarImage" lazy="loading" v-cloak>
-            </a>
-            <a v-text="authorName" class="author-name"></a>
-            <p v-text="authorBio" class="author-bio"></p>
+            </div>
+            <div class="author-detail">
+              <p v-text="authorName" class="author-name"></p>
+              <p v-text="authorBio" class="author-bio"></p>
+            </div>
           </div>
           <h1 class="article-title" v-text="articleData.title" v-cloak></h1>
         </div>

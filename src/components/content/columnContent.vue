@@ -75,5 +75,5 @@ img[lazy=error] {
 }
 </style>
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "lazyimg.styl";
+  @import "columnContent.styl";
 </style>
