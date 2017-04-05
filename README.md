@@ -1,6 +1,6 @@
 # vue-small-work
 
->  本项目是基于vue2个人项目。目前实现的图片无限加载，路由嵌套及左右滑动等，暂时只是拥有知乎文章发现及栏目发现两个模块的v1.0版，下个版本会在移动交互上增加一定调整并增加评论查看及收藏文章栏目模块，敬请期待。
+>  本项目是基于vue2个人项目。
 
 >*  感谢[shanelau](https://github.com/shanelau/zhihu)提供的知乎api接口
 
@@ -15,7 +15,6 @@
 *  axios
 *  vue-router
 *  vuex
-*  vue-awesome-swiper
 *  vue-infinite-scroll
 *  stylus
 *  webpack
@@ -77,15 +76,9 @@ npm install friendly-errors-webpack-plugin --save-dev
 ***
 * 瀑布流布局
 * 无限滚动
-* 侧边导航
 * 图片懒加载
-* 左右滑动切换
+* 组件缓存
 * 等等
-
-### 正在实现的功能
-***
-* 文章，栏目收藏
-* 页面改版
 
 
 ### 最后
