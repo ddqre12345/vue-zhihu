@@ -1,88 +1,177 @@
-# vue-small-work
 
->  ±¾ÏîÄ¿ÊÇ»ùÓÚvue2¸öÈËÏîÄ¿¡£
+# çŸ¥ä¹ä¸“æ ï¼Œä¸ä¸€æ ·çš„å‘³é“
+è½»æ¾æŸ¥çœ‹çŸ¥ä¹ä¸“æ å†…å®¹, ä¸ç»æ„é—´å‘ç°ä½ çš„å¦ä¸€é¢ã€‚
 
->*  ¸ĞĞ»[shanelau](https://github.com/shanelau/zhihu)Ìá¹©µÄÖªºõapi½Ó¿Ú
+>  æœ¬é¡¹ç›®æ˜¯åŸºäºvue2çš„å¼€æºé¡¹ç›®ã€‚
 
->* ±¾ÏîÄ¿µØÖ·[githubµØÖ·](https://github.com/ddqre12345/vue-small-work)
+>*  æ„Ÿè°¢[shanelau](shanelau/zhihu)æä¾›çš„çŸ¥ä¹apiæ¥å£
+
+>*  å¦‚æœè¿™ä¸ªé¡¹ç›®èƒ½å¸¦ç»™ä½ å¸®åŠ©ï¼Œå¸Œæœ›ç»™ä¸ªstar
+
+>*  ä½ çš„å»ºè®®æ˜¯æˆ‘è¿›æ­¥çš„åŠ¨åŠ›ï¼Œå¥½çš„éœ€æ±‚ç ¸è¿‡æ¥
+
+>* æœ¬é¡¹ç›®åœ°å€[githubåœ°å€](ddqre12345/vue-small-work)
 
 
+### é¡¹ç›®æŠ€æœ¯æ¶æ„
 
-### ÏîÄ¿¼¼Êõ¼Ü¹¹
 ***
+
 *  vue-cli
+
 *  vue
+
 *  axios
+
 *  vue-router
+
 *  vuex
+
 *  vue-infinite-scroll
+
 *  stylus
+
 *  webpack
 
-###°²×°
+
+### ä¸Šå›¾
+![æ–‡ç« ](https://raw.githubusercontent.com/ddqre12345/vue-small-work/master/static/zhihu.gif)
+
+![æ ç›®](https://raw.githubusercontent.com/ddqre12345/vue-small-work/master/static/zhihu2.gif)
+
+###å®‰è£…
+
 ***
-ÏîÄ¿µØÖ·£º£¨`git clone`£©
+
+é¡¹ç›®åœ°å€ï¼šï¼ˆ`git clone`ï¼‰
+
 ```shell
-git clone https://github.com/ddqre12345/vue-small-work.git
-```
-Í¨¹ı`npm`°²×°±¾µØ·şÎñµÚÈı·½ÒÀÀµÄ£¿é(ĞèÒªÒÑ°²×°[Node.js](https://nodejs.org/))
+
+git clone ddqre12345/vue-small-work
 
 ```
+
+é€šè¿‡`npm`å®‰è£…æœ¬åœ°æœåŠ¡ç¬¬ä¸‰æ–¹ä¾èµ–æ¨¡å—(éœ€è¦å·²å®‰è£…[Node.js](Node.js))
+
+
+
+```
+
 npm install
-```
-Æô¶¯·şÎñ(http://localhost:9090)
 
 ```
+
+å¯åŠ¨æœåŠ¡(http://localhost:8083)
+
+
+
+```
+
 npm run dev
-```
-·¢²¼´úÂë
 
 ```
+
+å‘å¸ƒä»£ç 
+
+
+
+```
+
 npm run build
-```
-### °²×°×¢Òâ
-°²×° vue-cli
-```
-npm install -g vue-cli
-```
-°²×° vue-cli eslint
-```
-npm install -g eslint
-```
- °²×°ÒÀÀµ friendly-errors-webpack-plugin
 
 ```
-npm install friendly-errors-webpack-plugin --save-dev
+
+### å®‰è£…æ³¨æ„
+
+å®‰è£… vue-cli
+
 ```
-###Ä¿Â¼½á¹¹
+
+npm install -g vue-cli
+
+```
+
+å®‰è£… vue-cli eslint
+
+```
+
+npm install -g eslint
+
+```
+
+ å®‰è£…ä¾èµ– friendly-errors-webpack-plugin
+
+
+
+```
+
+npm install friendly-errors-webpack-plugin --save-dev
+
+```
+
+###ç›®å½•ç»“æ„
+
 ***
+
 <pre>
-©À©¤©¤ build              // ¹¹½¨·şÎñºÍwebpackÅäÖÃ
-©À©¤©¤ config             // ÏîÄ¿²»Í¬»·¾³µÄÅäÖÃ
-©À©¤©¤ dist               // ÏîÄ¿buildÄ¿Â¼
-©À©¤©¤ index.html         // ÏîÄ¿Èë¿ÚÎÄ¼ş
-©À©¤©¤ package.json       // ÏîÄ¿ÅäÖÃÎÄ¼ş
-©À©¤©¤ src                // Éú²úÄ¿Â¼
-©¦   ©À©¤©¤ assets         // Í¼Æ¬×ÊÔ´
-©¦   ©À©¤©¤ common          // ¹«¹²µÄcss js ×ÊÔ´
-©¦   ©À©¤©¤ components     // ¸÷ÖÖ×é¼ş
-©¦   ©À©¤©¤ App.vue         // Ö÷Ò³Ãæ 
-©¦   ©À©¤©¤ vuex           // vuex×´Ì¬¹ÜÀíÆ÷
-©¦   ©À©¤©¤ router.js     // Â·ÓÉÅäÖÃÆ÷
-©¦   ©¸©¤©¤ main.js        // Webpack Ô¤±àÒëÈë¿Ú
+
+â”œâ”€â”€ build              // æ„å»ºæœåŠ¡å’Œwebpacké…ç½®
+
+â”œâ”€â”€ config             // é¡¹ç›®ä¸åŒç¯å¢ƒçš„é…ç½®
+
+â”œâ”€â”€ dist               // é¡¹ç›®buildç›®å½•
+
+â”œâ”€â”€ index.html         // é¡¹ç›®å…¥å£æ–‡ä»¶
+
+â”œâ”€â”€ package.json       // é¡¹ç›®é…ç½®æ–‡ä»¶
+
+â”œâ”€â”€ src                // ç”Ÿäº§ç›®å½•
+
+â”‚   â”œâ”€â”€ assets         // å›¾ç‰‡èµ„æº
+
+â”‚   â”œâ”€â”€ common          // å…¬å…±çš„css js èµ„æº
+
+â”‚   â”œâ”€â”€ components     // å„ç§ç»„ä»¶
+
+â”‚   â”œâ”€â”€ App.vue         // ä¸»é¡µé¢ 
+
+â”‚   â”œâ”€â”€ vuex           // vuexçŠ¶æ€ç®¡ç†å™¨
+
+â”‚   â”œâ”€â”€ router.js     // è·¯ç”±é…ç½®å™¨
+
+â”‚   â””â”€â”€ main.js        // Webpack é¢„ç¼–è¯‘å…¥å£
+
 </pre>
 
-###ÊµÏÖµÄ¹¦ÄÜ
+
+
+###å®ç°çš„åŠŸèƒ½
+
 ***
-* ÆÙ²¼Á÷²¼¾Ö
-* ÎŞÏŞ¹ö¶¯
-* Í¼Æ¬ÀÁ¼ÓÔØ
-* ×é¼ş»º´æ
-* µÈµÈ
+
+* ç€‘å¸ƒæµå¸ƒå±€
+
+* æ— é™æ»šåŠ¨
+
+* å›¾ç‰‡æ‡’åŠ è½½
+
+* ç»„ä»¶ç¼“å­˜
+
+* ç­‰ç­‰
 
 
-### ×îºó
-¸ĞĞ»¿ªÔ´ÉçÇø £¬ºÜ¶à²»×ãÖ®´¦Çë¶àÖ¸½Ì
+
+
+
+### æœ€å
+
+æ„Ÿè°¢å¼€æºç¤¾åŒº ï¼Œå¾ˆå¤šä¸è¶³ä¹‹å¤„è¯·å¤šæŒ‡æ•™
+
  
+
  
+
+
+
  
+
