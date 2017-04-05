@@ -14,7 +14,6 @@
   "dependencies": {
     "axios": "^0.15.3",
     "babel-runtime": "^6.23.0",
-    "better-scroll": "^0.1.8",
     "eventsource-polyfill": "^0.9.6",
     "stylus": "^0.54.5",
     "vue": "^2.2.1",

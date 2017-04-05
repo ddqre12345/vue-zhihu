@@ -21,21 +21,10 @@
       vHeader,
       loading
     },
-    data() {
-      return {
-        firstShow: true,
-        show: false
-      };
-    },
     computed: {
       ...mapState([
         'loadingShow'
       ])
-    },
-    methods: {
-      isShow() {
-        this.show = !this.show;
-      }
     }
   };
 </script>
