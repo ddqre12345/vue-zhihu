@@ -40,7 +40,7 @@ npm run dev
 ```
 npm run build
 ```
-###目录结构
+### 目录结构
 ***
 <pre>
 ├── build              // 构建服务和webpack配置
