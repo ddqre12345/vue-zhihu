@@ -18,7 +18,7 @@
 *  express
 *  webpack
 
-### 上图
+### 效果图
 ![文章](https://raw.githubusercontent.com/ddqre12345/vue-small-work/master/static/zhihu.gif)
 ![栏目](https://raw.githubusercontent.com/ddqre12345/vue-small-work/master/static/zhihu2.gif)
 
