@@ -3,8 +3,9 @@
 >  本项目是基于vue2的开源项目。
 >*  感谢[shanelau](https://github.com/shanelau/zhihu)提供的知乎api接口
 >*  star，fork是我前进的动力，建议多多益善，仅供参考，哈哈
->* vue-cli第一次使用的可以看看项目里的注释代码，提神醒脑
->* 本项目地址[github地址](https://github.com/ddqre12345/vue-small-work)
+>*  vue-cli第一次使用的可以看看项目里的注释代码，提神醒脑
+>*  [github地址](https://github.com/ddqre12345/vue-small-work)
+>*  [demo地址](http://118.89.226.181:1000) （请用chrome的手机模式预览）
 
 ### 项目技术
 ***
