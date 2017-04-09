@@ -2,31 +2,31 @@
 轻松查看知乎专栏内容, 不经意间发现你的另一面。
 >  本项目是基于vue2的开源项目。
 >*  感谢[shanelau](https://github.com/shanelau/zhihu)提供的知乎api接口
->*  star，fork是我前进的动力，建议多多益善，仅供参考，哈哈
+>*  star，fork是我前进的动力，问题与改进建议也是多多益善，当然仅供参考，哈哈
 >*  vue-cli第一次使用的可以看看项目里的注释代码，提神醒脑
 >*  [github地址](https://github.com/ddqre12345/vue-small-work)
 >*  [demo地址](http://118.89.226.181:1000) （请用chrome的手机模式预览）
 
-### 项目技术
+### 技术细节
 ***
 *  vue
 *  vue-cli
-*  axios
 *  vue-router
 *  vuex
-*  vue-infinite-scroll
+*  axios
 *  stylus
+*  express
 *  webpack
+
 ### 上图
 ![文章](https://raw.githubusercontent.com/ddqre12345/vue-small-work/master/static/zhihu.gif)
-
 ![栏目](https://raw.githubusercontent.com/ddqre12345/vue-small-work/master/static/zhihu2.gif)
 
-###安装
+### 安装
 ***
 项目地址：（`git clone`）
 ```shell
-git clone ddqre12345/vue-small-work
+git clone ddqre12345/vue-zhihu
 ```
 通过`npm`安装本地服务第三方依赖模块(需要已安装[Node.js](Node.js))
 ```
@@ -65,7 +65,8 @@ npm run build
 * 文章无限滚动
 * 图片懒加载
 * 组件缓存
-
+### v2.1实现的功能-----2017.04.09
+* 线上demo
 
 ### v3.0规划功能-----开始时间未定
 ***
